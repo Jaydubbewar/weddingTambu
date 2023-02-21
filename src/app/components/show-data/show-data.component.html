@@ -1,0 +1,59 @@
+
+<h2> Select from dropdown what do you want.... </h2>
+
+
+<nav class="navbar navbar navbar-light bg-light" style="align-items: center;">
+    <div class="container-fluid">
+      
+      <div class="navbar" id="navbarSupportedContent">
+        <ul class="navbar-nav me-4  " style="align-content: center;">
+         
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+            All Category
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a (click)="getProduct('venue')" class="dropdown-item" href="#">Venue</a></li>
+                <li><a (click)="getProduct('catering')" class="dropdown-item" href="#">catering</a></li>
+                <li><a (click)="getProduct('photographer')" class="dropdown-item" href="#">Photographer</a></li>
+                <li><a (click)="getProduct('entertainment')" class="dropdown-item" href="#">Entertainment</a></li>
+                <li><a (click)="getProduct('vendors')" class="dropdown-item" href="#">Vendors</a></li>
+            
+            </ul>
+          </div>
+        </ul>  
+      </div>
+    </div>
+  </nav>
+
+<br><br>
+
+  <div class="card-group">
+    <tr *ngFor="let teacher of products">  
+        <div class="card" style="width: 14rem;">
+            <img src={{teacher.photos}} class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{teacher.name}}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{teacher.name}}</li>
+                
+                <li class="list-group-item">{{teacher.about }}</li>              
+                <li class="list-group-item">{{teacher.experience}}</li>
+            </ul>
+            <div class="card-body">
+                <button>Explore</button>
+            </div>
+          </div> 
+    </tr>  
+    </div>
+
+<!-- <div *ngFor="let item of products">
+    <p> Name: {{item.name}} </p>
+    <p> about: {{item.about}} </p>
+   
+    <img src={{item.image}} alt="...">
+</div> -->
+
+<br>
+<br>
