@@ -1,6 +1,34 @@
 
+
+
+
+
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-whatever="@mdo">Sign up</button>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">   
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="btn-group-vertical">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</button>
+
+            </div>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -11,6 +39,7 @@
       </div>
       <div class="modal-body">
         <form>
+          
           <div class="mb-3 form-group">
             <label for="recipient-name" class="col-form-label">Email Id:</label>
             <input [(ngModel)]="email" name="LogEmail" type="text" class="form-control">
@@ -55,3 +84,6 @@
       </div>
     </div>
   </div>
+
+
+
