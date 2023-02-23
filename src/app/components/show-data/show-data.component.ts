@@ -14,7 +14,7 @@ export class ShowDataComponent {
 
   ngOnInit(): void {
 
-    this.getProduct('photographer');
+    this.getProduct('venue');
   }  
 
   async getProduct(sub:any) {

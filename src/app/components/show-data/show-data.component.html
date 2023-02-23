@@ -1,5 +1,3 @@
-<app-log-sign></app-log-sign>
-
 <h2> Select from dropdown what do you want.... </h2>
 
 
@@ -29,7 +27,7 @@
   <div class="card-group">
     <tr *ngFor="let teacher of products">  
         <div class="card" style="width: 14rem;">
-            <img src={{teacher.photos}} class="card-img-top" alt="...">
+            <img src={{teacher.images[0]}} class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{teacher.name}}</h5>
             </div>
@@ -37,7 +35,7 @@
                 <li class="list-group-item">{{teacher.name}}</li>
                 
                 <li class="list-group-item">{{teacher.about }}</li>              
-                <li class="list-group-item">{{teacher.experience}}</li>
+                <li class="list-group-item">{{teacher.area}}</li>
             </ul>
             <div class="card-body">
                 <button>Explore</button>
