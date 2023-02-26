@@ -23,6 +23,9 @@ export class VendorSignupComponent {
   Dimage : string[]= [];
   path:string=""
 
+  database:string=""
+  selectedTeam:string='';  
+
   constructor(private data:WeddtambuService,private af:AngularFireStorage){}
 
   // DATA METHODS  //
@@ -31,7 +34,7 @@ export class VendorSignupComponent {
     // this.Dimage.P
     const DataVenue = {name:this.Dname,contact: this.Dcontact,images:this.Dimage,area:this.Darea}
     console.log(DataVenue)
-    this.data.addData('venue',DataVenue)
+    this.data.addData(this.database,DataVenue)
     alert('Data added successfully, you are heartly welcome to our family...')
     this.Dempty()
   }

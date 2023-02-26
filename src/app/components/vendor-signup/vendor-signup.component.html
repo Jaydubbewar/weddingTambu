@@ -1,109 +1,95 @@
+<div class="w-50 p-3">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-         
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              List your business here...
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="btn-group-vertical">
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#venueModal" href="#">venue</a></li>
-              </div>
-            </ul>
-          </li>      
-        </ul>
-        
-      </div>
+    <form>                                     <!------COMMON FORM ------>
+    <div class="form-group mb-3 ">
+      <label for="recipient-name" class="col-form-label">Name:</label>
+      <input [(ngModel)]="Dname" name="SignEmail" type="text" class="form-control">
     </div>
-  </nav>
+    <div class="form-group mb-3">
+      <label for="message-text" class="col-form-label">Contact:</label>
+      <input [(ngModel)]="Dcontact" name="SignPass" type="text" class="form-control">
+    </div>
+    <div class="form-group mb-3">
+      <label for="message-text" class="col-form-label">About: </label>
+      <input [(ngModel)]="Dabout" name="SignPass" type="text" class="form-control">
+    </div>
+    <div class="form-group mb-3">
+      <label for="message-text" class="col-form-label">price range: </label>
+      <input [(ngModel)]="DpriceRange" name="SignPass" type="text" class="form-control">
+    </div>
+    <div class="form-group mb-3">
+      <label for="message-text" class="col-form-label">Policy: </label>
+      <input [(ngModel)]="Dpolicy" name="SignPass" type="text" class="form-control">
+    </div>
+                                                      <!--------------------->
+                                                      
+    <div class="col">
+        <select [(ngModel)]="database" [ngModelOptions]="{standalone: true}">
+          <option default>Vendor options</option>
+          <option>venue</option>
+          <option>tambu</option>
+          <option>catering</option>
+          <option>photographer</option>
+          <option>entertainment</option>
+          <option>vendors</option>
+        </select>
+      </div>
 
-  
-<!-- VENUE MODAL -->
+    <!-- LOGIC FOR VENDORS SIGNUP -->
 
-<div class="modal fade" id="venueModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">List your venue with us...</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group mb-3 ">
-              <label for="recipient-name" class="col-form-label">Name:</label>
-              <input [(ngModel)]="Dname" name="SignEmail" type="text" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="message-text" class="col-form-label">Contact:</label>
-              <input [(ngModel)]="Dcontact" name="SignPass" type="text" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="message-text" class="col-form-label">Area: </label>
-              <input [(ngModel)]="Darea" name="SignPass" type="text" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="message-text" class="col-form-label">Location: </label>
-              <input [(ngModel)]="Dloc" name="SignPass" type="text" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="message-text" class="col-form-label">price range: </label>
-              <input [(ngModel)]="DpriceRange" name="SignPass" type="text" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="message-text" class="col-form-label">Policy: </label>
-              <input [(ngModel)]="Dpolicy" name="SignPass" type="text" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="message-text" class="col-form-label">Rooms: </label>
-              <input [(ngModel)]="Drooms" name="SignPass" type="text" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="message-text" class="col-form-label">About: </label>
-              <input [(ngModel)]="Dabout" name="SignPass" type="text" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="message-text" class="col-form-label">Decorations: </label>
-              <input [(ngModel)]="Ddecorations" name="SignPass" type="text" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="Image">Upload Images></label>
-              <input type="file"  (change)="upload($event)" accept="*.png.jpg">
-            </div>
-          </form>
-        </div>
-  
-        <div *ngIf="Dimage.length==0; then thenBlock else elseBlock"></div>
-          <ng-template #thenBlock>No images uploaded</ng-template>
-  
-          <ng-template #elseBlock>
-            <div class="card-group">            
-              <tr *ngFor="let img of Dimage">  
-                <div class="card ">
-                  <img src={{img}} class="card-img-top" alt="..." width="50" height="50">                
-                </div>              
-              </tr>
-            </div>       
-          </ng-template>      
+    <div class='row' [ngSwitch]="database">  
+
+        <div *ngSwitchCase="'venue'">                       <!------venue ------->
+          <div class="form-group mb-3">
+            <label for="message-text" class="col-form-label">Area: </label>
+            <input [(ngModel)]="Darea" name="SignPass" type="text" class="form-control">
+          </div>
+          <div class="form-group mb-3">
+            <label for="message-text" class="col-form-label">Location: </label>
+            <input [(ngModel)]="Dloc" name="SignPass" type="text" class="form-control">
+          </div>
+          <div class="form-group mb-3">
+            <label for="message-text" class="col-form-label">Rooms: </label>
+            <input [(ngModel)]="Drooms" name="SignPass" type="text" class="form-control">
+          </div>
           
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button (click)="Venue()" type="button" name="SignButton" class="btn btn-primary">Sign up</button>
-        </div>
-      </div>
+        </div>         
+                                                   
+                                                          <!--------------------->
+
+
+        <div *ngSwitchCase="'catering'">
+          <div class="form-group mb-3">
+            <label for="message-text" class="col-form-label">Area: </label>
+            <input [(ngModel)]="Darea" name="SignPass" type="text" class="form-control">
+          </div>
+          <div class="form-group mb-3">
+            <label for="message-text" class="col-form-label">Location: </label>
+            <input [(ngModel)]="Dloc" name="SignPass" type="text" class="form-control">
+          </div>
+        </div>  
+        <div *ngSwitchDefault>Select an option</div>  
+    </div>  
+   <!-- -------------------------- -->
+    <div class="form-group mb-3">
+      <label for="Image">Upload Images></label>
+      <input type="file"  (change)="upload($event)" accept="*.png.jpg">
     </div>
-  
-  <!-- VENUE MODAL END-->
-  
-  
+    <div *ngIf="Dimage.length==0; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>No images uploaded</ng-template>
+
+    <ng-template #elseBlock>
+      <div class="card-group">            
+        <tr *ngFor="let img of Dimage">  
+          <div class="card ">
+            <img src={{img}} class="card-img-top" alt="..." width="200" height="200">                
+          </div>              
+        </tr>
+      </div>       
+    </ng-template>      
+    <div class="modal-footer">
+      <button (click)="Venue()" type="button" name="SignButton" class="btn btn-primary">Sign up</button>
+    </div>      
+  </form>
+</div>
   
