@@ -1,0 +1,32 @@
+<p>log in form</p>
+<form>         
+    <div class="mb-3 form-group">
+      <label for="recipient-name" class="col-form-label">Email Id:</label>
+      <input [(ngModel)]="email" name="LogEmail" type="text" class="form-control">
+    </div>
+    <div class="mb-3 form-group">
+      <label for="message-text" class="col-form-label">Password: </label>
+      <input [(ngModel)]="password" name="LogPassword" type="text" class="form-control">
+    </div>
+  </form>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <button (click)="login()" type="button" name="LogButton" class="btn btn-primary">Login</button>
+</div>
+
+<br><br>
+<p> Sign up form</p>
+<form>
+    <div class="form-group mb-3 ">
+      <label for="recipient-name" class="col-form-label">Email Id:</label>
+      <input [(ngModel)]="signemail" name="SignEmail" type="text" class="form-control">
+    </div>
+    <div class="form-group mb-3">
+      <label for="message-text" class="col-form-label">Password: </label>
+      <input [(ngModel)]="signpassword" name="SignPass" type="text" class="form-control">
+    </div>
+  </form>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <button (click)="signin()" type="button" name="SignButton" class="btn btn-primary">Sign up</button>
+</div>

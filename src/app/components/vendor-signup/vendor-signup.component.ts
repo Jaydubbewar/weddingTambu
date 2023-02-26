@@ -1,21 +1,13 @@
 import { Component } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { AuthService } from 'src/app/services/auth.service';
 import { WeddtambuService } from 'src/app/services/weddtambu.service';
+
 @Component({
-  selector: 'app-log-sign',
-  templateUrl: './log-sign.component.html',
-  styleUrls: ['./log-sign.component.css']
+  selector: 'app-vendor-signup',
+  templateUrl: './vendor-signup.component.html',
+  styleUrls: ['./vendor-signup.component.css']
 })
-export class LogSignComponent {
-
-  // AUTH VARIABLES  //
-  email:string = '';
-  password:string = '';
-
-  signemail:string = '';
-  signpassword:string = '';
-  //  -------------  //
+export class VendorSignupComponent {
 
   // DATA VARIABLES  //
 
@@ -31,7 +23,7 @@ export class LogSignComponent {
   Dimage : string[]= [];
   path:string=""
 
-  constructor(private auth : AuthService,private data:WeddtambuService,private af:AngularFireStorage){}
+  constructor(private data:WeddtambuService,private af:AngularFireStorage){}
 
   // DATA METHODS  //
 
@@ -70,27 +62,4 @@ export class LogSignComponent {
    this.Dimage = [];
    this.path = ""
   }
-
-  //AUTH METHODS //
-  login(){
-    console.log('login in')
-    
-    this.auth.login(this.email,this.password);
-    this.email=''
-    this.password=''
-    console.log('login successful')
-  }
-
-  signin(){
-    console.log('signin in',this.signemail,this.signpassword)
-   
-    this.auth.register(this.signemail,this.signpassword);
-    this.signemail=''
-    this.signpassword=''
-    console.log('signin successful')
-  }
-
-  // --------------- //
-
-
 }

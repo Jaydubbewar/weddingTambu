@@ -156,13 +156,27 @@
           </div>
         </form>
       </div>
+
+      <div *ngIf="Dimage.length==0; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>No images uploaded</ng-template>
+
+        <ng-template #elseBlock>
+          <div class="card-group">            
+            <tr *ngFor="let img of Dimage">  
+              <div class="card ">
+                <img src={{img}} class="card-img-top" alt="..." width="50" height="50">                
+              </div>              
+            </tr>
+          </div>       
+        </ng-template>      
+        
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button (click)="Venue()" type="button" name="SignButton" class="btn btn-primary">Sign up</button>
       </div>
     </div>
   </div>
-</div>
 
 <!-- VENUE MODAL END-->
 

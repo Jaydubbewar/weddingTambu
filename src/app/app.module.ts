@@ -12,13 +12,20 @@ import { environment } from 'src/environments/environment';
 import { HeaderComponent } from './components/header/header.component';
 import { ShowDataComponent } from './components/show-data/show-data.component';
 import { LogSignComponent } from './components/log-sign/log-sign.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LogSignupComponent } from './components/log-signup/log-signup.component';
+import { HomeComponent } from './components/home/home.component';
+import { VendorSignupComponent } from './components/vendor-signup/vendor-signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ShowDataComponent,
-    LogSignComponent
+    LogSignComponent,
+    LogSignupComponent,
+    HomeComponent,
+    VendorSignupComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,8 @@ import { LogSignComponent } from './components/log-sign/log-sign.component';
     FormsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
