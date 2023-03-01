@@ -20,21 +20,28 @@ export class VendorSignupComponent {
   Drooms:string = '';
   Dabout:string = '';
   Ddecorations:string = '';
-  Dimage : string[]= [];
   path:string=""
 
   database:string=""
-  selectedTeam:string='';  
+  Dimage : string[]= [];
+  Dpackage : any[]= [];
+  pname : string=""
+  pval : string=""
 
   constructor(private data:WeddtambuService,private af:AngularFireStorage){}
 
   // DATA METHODS  //
+  package(){
+    this.Dpackage.push({Pname:this.pname,Pvalue:this.pval})
+    this.pname=''
+    this.pval=''
+  }
+
 
   Venue(){
-    // this.Dimage.P
-    const DataVenue = {name:this.Dname,contact: this.Dcontact,images:this.Dimage,area:this.Darea}
+    const DataVenue = {name:this.Dname,contact: this.Dcontact,images:this.Dimage,area:this.Darea,pkg:this.Dpackage}
     console.log(DataVenue)
-    this.data.addData(this.database,DataVenue)
+    // this.data.addData(this.database,DataVenue)
     alert('Data added successfully, you are heartly welcome to our family...')
     this.Dempty()
   }
