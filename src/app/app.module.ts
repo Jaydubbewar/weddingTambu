@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LogSignupComponent } from './components/log-signup/log-signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { VendorSignupComponent } from './components/vendor-signup/vendor-signup.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { VendorSignupComponent } from './components/vendor-signup/vendor-signup.
     LogSignComponent,
     LogSignupComponent,
     HomeComponent,
-    VendorSignupComponent
+    VendorSignupComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
