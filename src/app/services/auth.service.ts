@@ -6,14 +6,25 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class AuthService {
 
+  usr:string=''
+
   constructor(private fireauth: AngularFireAuth) { }
     
+  getCurrentUser(){  
+    return this.usr 
+  }
+
+
   login(email:string,password:string){
-    console.log('login service in')
-    this.fireauth.signInWithEmailAndPassword(email,password).then(()=>{
+    this.fireauth.signInWithEmailAndPassword(email,password).then((user)=>{
+      this.fireauth.onAuthStateChanged(user => {
+        if (user) {
+        this.usr=user.uid;
+        }
+      });
+      // this.user = this.fireauth.authState;
       localStorage.setItem('token','item');
       alert('login successful')
-      console.log('login successful')
     },
     err=>{
       alert('something went wrong with sign in')
@@ -22,21 +33,24 @@ export class AuthService {
   }
 
   register(email:string,password:string){
-    console.log('register service in')
     this.fireauth.createUserWithEmailAndPassword(email,password).then(()=>{
       alert('registration successful')
       console.log('registration successful')
 
     },
     err=>{
-      alert('something went wrong with rgister')
+      alert('something went wrong with register')
     }
     )
   }
 
+
+
  signout(){
   this.fireauth.signOut().then(()=>{
     localStorage.removeItem('item')
+    this.usr = ''
+    alert('signout')
   },err=>{
     alert('error while logout')
   })

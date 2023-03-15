@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { WeddtambuService } from 'src/app/services/weddtambu.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-vendor-signup',
   templateUrl: './vendor-signup.component.html',
@@ -28,7 +30,14 @@ export class VendorSignupComponent {
   pname : string=""
   pval : string=""
 
-  constructor(private data:WeddtambuService,private af:AngularFireStorage){}
+  ur:string=''
+  constructor(private router: Router,private data:WeddtambuService,private af:AngularFireStorage,private auth : AuthService){
+    this.ur = this.auth.getCurrentUser();
+
+    if (this.ur==''){
+      this.router.navigate(['/log-signup']);
+    }
+  }
   Bustype:string=''
 
   registerForm = new FormGroup({
@@ -109,24 +118,20 @@ export class VendorSignupComponent {
 
   // DATA METHODS  //
 
-  // package(){
-  //   this.Dpackage.push({Pname:this.pname,Pvalue:this.pval})
-  //   this.pname=''
-  //   this.pval=''
-  // }
+  package(){
+    this.Dpackage.push({Pname:this.pname,Pvalue:this.pval})
+    this.pname=''
+    this.pval=''
+  }
 
   registerSubmited() {
     console.log(this.registerForm.value);
     const DataVenue = this.registerForm.value.btype!;
     this.data.addData(DataVenue,this.registerForm.value)
+
+    this.data.addData('user',{email:this.registerForm.value.email,vendor:DataVenue,UID:this.auth.getCurrentUser()})
   }
-  Venue(){
-    const DataVenue = {name:this.Dname,contact: this.Dcontact,images:this.Dimage,area:this.Darea,pkg:this.Dpackage}
-    console.log(DataVenue)
-    // this.data.addData(this.database,DataVenue)
-    alert('Data added successfully, you are heartly welcome to our family...')
-    this.Dempty()
-  }
+ 
 
   async upload($event:any){           // FOR IMAGE UPLOAD
     

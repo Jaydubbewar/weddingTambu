@@ -1,48 +1,38 @@
 import { Component } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { Router } from '@angular/router';
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons"
+
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { WeddtambuService } from 'src/app/services/weddtambu.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  
- faBars =faBars;
- faClose=faClose;
 
- 
-  // AUTH VARIABLES  //
-  email:string = '';
-  password:string = '';
+  faBars = faBars;
+  faClose = faClose;
 
-  signemail:string = '';
-  signpassword:string = '';
-  //  -------------  //
+  ur: any;
+  urr: any;
 
-  
-  constructor(private auth : AuthService,private data:WeddtambuService,private af:AngularFireStorage){}
+  constructor(private auth: AuthService, private wedt: WeddtambuService, private router: Router) { }
 
-  //AUTH METHODS //
-  login(){
-    console.log('login in')
-    
-    this.auth.login(this.email,this.password);
-    this.email=''
-    this.password=''
-    console.log('login successful')
+  async check() {
+    this.ur = this.auth.getCurrentUser();
+    if (this.ur == '') {
+      this.router.navigate(['/log-signup']);
+    }
+    else {
+      this.urr = await this.wedt.getUser(this.ur);
+      if (this.urr == '') {
+        this.router.navigate(['/vendor-signup']);
+      }
+      else{
+        this.router.navigate(['/app-dashboard']);
+      }
+    }
   }
-
-  signin(){
-    console.log('signin in',this.signemail,this.signpassword)
-   
-    this.auth.register(this.signemail,this.signpassword);
-    this.signemail=''
-    this.signpassword=''
-    console.log('signin successful')
-  }
-
 }

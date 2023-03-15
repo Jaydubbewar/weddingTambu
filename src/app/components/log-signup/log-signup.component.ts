@@ -22,7 +22,7 @@ export class LogSignupComponent {
     this.auth.login(this.email,this.password);
     this.email=''
     this.password=''
-    console.log('login successful')
+    console.log('login successful',this.auth.getCurrentUser())
   }
 
   signin(){

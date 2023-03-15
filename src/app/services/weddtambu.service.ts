@@ -16,7 +16,15 @@ export class WeddtambuService {
   getData(name: string) {
     console.log(name)
     return new Promise<any>((resolve)=> {
-      this.db.collection(name).valueChanges().subscribe(supplier => resolve(supplier))
+      this.db.collection(name,ref => ref.where('about','==','asdf')).valueChanges().subscribe(supplier => resolve(supplier))
     })
   }
+
+  getUser(UserID: string) {
+    console.log(UserID)
+    return new Promise<any>((resolve)=> {
+      this.db.collection('user',ref => ref.where('UID','==',UserID)).valueChanges().subscribe(supplier => resolve(supplier))
+    })
+  }
+
 }

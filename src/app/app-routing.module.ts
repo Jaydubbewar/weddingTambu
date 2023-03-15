@@ -9,7 +9,8 @@ const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'log-signup', component:LogSignupComponent},
   {path:'app-dashboard', component:DashboardComponent},
-  {path:'vendor-signup',component:VendorSignupComponent}
+  {path:'vendor-signup',component:VendorSignupComponent},
+  // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
