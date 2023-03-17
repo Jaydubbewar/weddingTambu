@@ -1,4 +1,4 @@
-<div class="login-container">
+<!-- <div class="login-container">
   <div class="main">  	
     <input type="checkbox" id="chk" aria-hidden="true">
   
@@ -21,4 +21,80 @@
         </form>
       </div>
   </div>
-  </div>
+  </div> -->
+
+
+
+
+  <div class="log-container">
+
+    <div class="main">
+      <input type="checkbox" id="chk" aria-hidden="true">
+    
+    <!--------------------signup-------->
+    
+        <div  class="signup">
+          <form [formGroup]="signupForm" (ngSubmit)="signin()">
+            <label for="chk" aria-hidden="true">Sign up</label>
+            <input type="text" placeholder="Username" formControlName="username">
+            <div
+            class="form-text text-danger"
+            *ngIf="Username.errors?.['required'] && (Username.touched || Username.dirty)"
+          >
+            Username is Required.
+          </div>
+    
+            <input type="email" placeholder="Email"  formControlName="email">
+            <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
+              Email is Required.
+            </div>
+            <div class="form-text text-danger" *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">
+              Email is Invalid.
+            </div>
+           
+            <input type="password" placeholder="Password" formControlName="pwd">
+            <div class="form-text text-danger" *ngIf=" PWD.errors?.['required'] && (PWD.touched || PWD.dirty)">
+              Password is Required.
+            </div>
+            <div
+            class="form-text text-danger"
+            *ngIf="PWD.errors?.['minlength'] || PWD.errors?.['maxlength']  && (PWD.touched || PWD.dirty)"
+          >          
+            Password length should be 6 characters
+          </div>
+            <button (click)="openLogin()" type="submit">Sign up</button>
+           
+          </form>
+        </div>
+    
+    
+    
+    <!-----------Login ------->
+    
+        <div  class="login">
+          <form [formGroup]="loginForm"  (ngSubmit)="login()">
+            <label for="chk" aria-hidden="true">Login</label>
+            <input type="email"formControlName="Lemail" placeholder="Email" >
+            <div class="form-text text-danger" *ngIf="LEmail.errors?.['required'] && (LEmail.touched || LEmail.dirty)">
+              Email is Required.
+            </div>
+            <div class="form-text text-danger" *ngIf="LEmail.errors?.['email'] && (LEmail.touched || LEmail.dirty)">
+              Email is Invalid.
+            </div>
+
+            <input type="password" formControlName="Lpwd" placeholder="Password" >
+            <div class="form-text text-danger" *ngIf=" LPWD.errors?.['required'] && (LPWD.touched || LPWD.dirty)">
+              Password is Required.
+            </div>
+            <div
+            class="form-text text-danger"
+            *ngIf="LPWD.errors?.['minlength'] || LPWD.errors?.['maxlength']  && (LPWD.touched || LPWD.dirty)"
+          >          
+            Password length should be 6 characters
+          </div>
+            <button type="submit" (click)="openSignup()">Login</button>
+            
+          </form>
+        </div>
+    </div>
+    </div>

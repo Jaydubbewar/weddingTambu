@@ -15,7 +15,7 @@ export class AuthService {
   }
 
 
-  login(email:string,password:string){
+  login(email:any,password:any){
     this.fireauth.signInWithEmailAndPassword(email,password).then((user)=>{
       this.fireauth.onAuthStateChanged(user => {
         if (user) {
@@ -32,7 +32,7 @@ export class AuthService {
     )
   }
 
-  register(email:string,password:string){
+  register(email:any,password:any){
     this.fireauth.createUserWithEmailAndPassword(email,password).then(()=>{
       alert('registration successful')
       console.log('registration successful')
