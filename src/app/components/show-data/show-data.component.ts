@@ -18,7 +18,7 @@ export class ShowDataComponent {
   }  
 
   async getProduct(sub:any) {
-    this.products = await this.service.getData(sub);
-    console.log(this.products); 
+    // this.products = await this.service.getData(sub);
+    // console.log(this.products); 
   }
 }

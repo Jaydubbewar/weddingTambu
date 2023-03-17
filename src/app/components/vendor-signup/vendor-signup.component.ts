@@ -13,32 +13,33 @@ export class VendorSignupComponent {
 
   // DATA VARIABLES  //
 
-  Dname:string = '';
-  Dcontact:string = '';
-  Darea:string = '';
-  Dloc:string = '';
-  DpriceRange:string = '';
-  Dpolicy:string = '';
-  Drooms:string = '';
-  Dabout:string = '';
-  Ddecorations:string = '';
-  path:string=""
+  Dname: string = '';
+  Dcontact: string = '';
+  Darea: string = '';
+  Dloc: string = '';
+  DpriceRange: string = '';
+  Dpolicy: string = '';
+  Drooms: string = '';
+  Dabout: string = '';
+  Ddecorations: string = '';
+  path: string = ""
 
-  database:string=""
-  Dimage : string[]= [];
-  Dpackage : any[]= [];
-  pname : string=""
-  pval : string=""
+  database: string = ""
+  Dimage: string[] = [];
+  Dpackage: any[] = [];
+  pname: string = ""
+  pval: string = ""
 
-  ur:string=''
-  constructor(private router: Router,private data:WeddtambuService,private af:AngularFireStorage,private auth : AuthService){
+  ur: string = ''
+  urr: string = ''
+  constructor(private router: Router, private data: WeddtambuService, private af: AngularFireStorage, private auth: AuthService) {
     this.ur = this.auth.getCurrentUser();
 
-    if (this.ur==''){
+    if (this.ur == '') {
       this.router.navigate(['/log-signup']);
     }
   }
-  Bustype:string=''
+  Bustype: string = ''
 
   registerForm = new FormGroup({
     firstname: new FormControl('', [
@@ -58,14 +59,14 @@ export class VendorSignupComponent {
       Validators.minLength(10),
       Validators.maxLength(10),
     ]),
-    about: new FormControl('',[Validators.required]),
+    about: new FormControl('', [Validators.required]),
     pwd: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(10),]),
-    bname: new FormControl('',[Validators.required]),
-    btype: new FormControl('',[Validators.required]),
-    location: new FormControl('',[Validators.required]),
+    bname: new FormControl('', [Validators.required]),
+    btype: new FormControl('', [Validators.required]),
+    location: new FormControl('', [Validators.required]),
     rooms: new FormControl(''),
   });
 
@@ -114,49 +115,55 @@ export class VendorSignupComponent {
   get Rooms(): FormControl {
     return this.registerForm.get('rooms') as FormControl;
   }
-  
+
 
   // DATA METHODS  //
 
-  package(){
-    this.Dpackage.push({Pname:this.pname,Pvalue:this.pval})
-    this.pname=''
-    this.pval=''
+  package() {
+    this.Dpackage.push({ Pname: this.pname, Pvalue: this.pval })
+    this.pname = ''
+    this.pval = ''
   }
 
-  registerSubmited() {
-    console.log(this.registerForm.value);
-    const DataVenue = this.registerForm.value.btype!;
-    this.data.addData(DataVenue,this.registerForm.value)
+  async registerSubmited() {
+    this.urr = await this.data.getUser(this.ur);
 
-    this.data.addData('user',{email:this.registerForm.value.email,vendor:DataVenue,UID:this.auth.getCurrentUser()})
+    if (this.urr == '') {
+      console.log(this.registerForm.value);
+      const DataVenue = this.registerForm.value.btype!;
+      this.data.addData(DataVenue, this.registerForm.value)
+      this.data.addData('user', { email: this.registerForm.value.email, vendor: DataVenue, UID: this.auth.getCurrentUser() })
+    }
+    else {
+      alert('already a registered vendor ')
+    }
   }
- 
 
-  async upload($event:any){           // FOR IMAGE UPLOAD
-    
-    this.path=$event.target.files[0]
 
-    let aa = "/files"+Math.random()+this.path
-    await this.af.upload(aa,this.path)
+  async upload($event: any) {           // FOR IMAGE UPLOAD
+
+    this.path = $event.target.files[0]
+
+    let aa = "/files" + Math.random() + this.path
+    await this.af.upload(aa, this.path)
     console.log(aa)
-    await this.af.ref(aa).getDownloadURL().subscribe((url)=>{
+    await this.af.ref(aa).getDownloadURL().subscribe((url) => {
       this.Dimage.push(url)
     })
     alert("Image uploaded successfully")
   }
 
-  Dempty(){
-   this.Dname = '';
-   this.Dcontact = '';
-   this.Darea = '';
-   this.Dloc = '';
-   this.DpriceRange = '';
-   this.Dpolicy = '';
-   this.Drooms = '';
-   this.Dabout = '';
-   this.Ddecorations = '';
-   this.Dimage = [];
-   this.path = ""
+  Dempty() {
+    this.Dname = '';
+    this.Dcontact = '';
+    this.Darea = '';
+    this.Dloc = '';
+    this.DpriceRange = '';
+    this.Dpolicy = '';
+    this.Drooms = '';
+    this.Dabout = '';
+    this.Ddecorations = '';
+    this.Dimage = [];
+    this.path = ""
   }
 }

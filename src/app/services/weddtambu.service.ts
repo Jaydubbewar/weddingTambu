@@ -13,10 +13,10 @@ export class WeddtambuService {
     return this.db.collection(name).doc().set(coll);
   }
 
-  getData(name: string) {
+  getData(name: string,field:string,value:string) {
     console.log(name)
     return new Promise<any>((resolve)=> {
-      this.db.collection(name,ref => ref.where('about','==','asdf')).valueChanges().subscribe(supplier => resolve(supplier))
+      this.db.collection(name,ref => ref.where(field,'==',value)).valueChanges().subscribe(supplier => resolve(supplier))
     })
   }
 
