@@ -17,6 +17,10 @@ import { LogSignupComponent } from './components/log-signup/log-signup.component
 import { HomeComponent } from './components/home/home.component';
 import { VendorSignupComponent } from './components/vendor-signup/vendor-signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ForgotPassComponent } from './components/forgot-pass/forgot-pass.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { VenueComponent } from './components/venue/venue.component';
+import { TambuComponent } from './components/tambu/tambu.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LogSignupComponent,
     HomeComponent,
     VendorSignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    ForgotPassComponent,
+    PageNotFoundComponent,
+    VenueComponent,
+    TambuComponent
   ],
   imports: [
     BrowserModule,

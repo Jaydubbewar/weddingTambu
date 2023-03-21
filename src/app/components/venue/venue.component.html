@@ -1,0 +1,27 @@
+.
+<tbody>
+  <div class="card-group">
+    <tr *ngFor="let teacher of products">
+      <div class="container bcontent">
+        <div class="card" style="width: 1000px;">
+          <div class="row no-gutters">
+            <div class="col-sm-5">
+              <img class="card-img" src="{{teacher.image}}" onerror="this.src='assets/alternate.png';">
+            </div>
+            <div class="col-sm-7">
+              <div class="card-body">
+                <h5 class="card-title">{{teacher.bname}}</h5>
+                <p class="card-text">{{teacher.about}}</p>
+                <p class="card-text">{{teacher.location}}</p>
+                <p class="card-text">{{teacher.area}}</p>
+                <a href="#" class="btn btn-warning">Know More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </tr>
+  </div>
+</tbody>
+

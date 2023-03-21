@@ -20,6 +20,13 @@ export class WeddtambuService {
     })
   }
 
+  getVendors(name: string) {
+    console.log(name)
+    return new Promise<any>((resolve)=> {
+      this.db.collection(name,ref => ref).valueChanges().subscribe(supplier => resolve(supplier))
+    })
+  }
+
   getUser(UserID: string) {
     console.log(UserID)
     return new Promise<any>((resolve)=> {

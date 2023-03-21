@@ -57,12 +57,18 @@ this.showLogin=true;
   get LPWD(): FormControl {
     return this.loginForm.get('Lpwd') as FormControl;
   }
-//jay
+
   login(){
     console.log(this.loginForm.value.Lemail,this.loginForm.value.Lpwd)
     
     this.auth.login(this.loginForm.value.Lemail,this.loginForm.value.Lpwd);
-    console.log('login successful',this.auth.getCurrentUser())
+    
+    if(!this.auth.getVerified()){
+      this.auth.signout()
+    }else{
+      console.log('login successful',this.auth.getCurrentUser())
+    }
+    this.loginForm.reset();
   }
 
   signin(){
@@ -70,6 +76,7 @@ this.showLogin=true;
     
     this.auth.register(this.signupForm.value.email,this.signupForm.value.pwd);
     console.log('signin successful')
+    this.signupForm.reset()
   }
 
 

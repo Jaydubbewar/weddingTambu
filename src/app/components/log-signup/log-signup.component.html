@@ -62,7 +62,7 @@
           >          
             Password length should be 6 characters
           </div>
-            <button (click)="openLogin()" type="submit">Sign up</button>
+            <button type="submit">Sign up</button>
            
           </form>
         </div>
@@ -91,8 +91,9 @@
             *ngIf="LPWD.errors?.['minlength'] || LPWD.errors?.['maxlength']  && (LPWD.touched || LPWD.dirty)"
           >          
             Password length should be 6 characters
-          </div>
-            <button type="submit" (click)="openSignup()">Login</button>
+          </div>          
+          <a routerLink="/forgot-pass">forgot password?</a>
+          <button type="submit">Login</button>
             
           </form>
         </div>
