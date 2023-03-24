@@ -18,7 +18,7 @@ export class VenueComponent {
   ur:any;
 
   async gtt(){
-     this.products = await this.wedt.getVendors('Catering');
+     this.products = await this.wedt.getVendors('Venue');
    console.log(this.products)
   }
 }

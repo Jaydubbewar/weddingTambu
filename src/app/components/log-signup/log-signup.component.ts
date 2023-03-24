@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class LogSignupComponent {
 
   showLogin:boolean=false;   //tushar
 
-  constructor(private auth : AuthService){}
+  constructor(private auth : AuthService, private router: Router){}
 
   signupForm = new FormGroup({
     username:new FormControl('',[Validators.required]),
@@ -62,12 +63,14 @@ this.showLogin=true;
     console.log(this.loginForm.value.Lemail,this.loginForm.value.Lpwd)
     
     this.auth.login(this.loginForm.value.Lemail,this.loginForm.value.Lpwd);
-    
+    console.log(this.auth.getVerified())
     if(!this.auth.getVerified()){
       this.auth.signout()
+      this.router.navigate(['']);
     }else{
-      console.log('login successful',this.auth.getCurrentUser())
+      console.log('login successful',this.auth.getCurrentUser())      
     }
+
     this.loginForm.reset();
   }
 

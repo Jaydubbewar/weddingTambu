@@ -21,6 +21,8 @@ import { ForgotPassComponent } from './components/forgot-pass/forgot-pass.compon
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { VenueComponent } from './components/venue/venue.component';
 import { TambuComponent } from './components/tambu/tambu.component';
+import { CateringComponent } from './components/catering/catering.component';
+import { EntertainmentComponent } from './components/entertainment/entertainment.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { TambuComponent } from './components/tambu/tambu.component';
     ForgotPassComponent,
     PageNotFoundComponent,
     VenueComponent,
-    TambuComponent
+    TambuComponent,
+    CateringComponent,
+    EntertainmentComponent
   ],
   imports: [
     BrowserModule,
