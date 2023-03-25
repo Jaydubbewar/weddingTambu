@@ -22,5 +22,6 @@ export class HomeComponent {
   // }
   signout(){
     this.auth.signout();
+    alert('sign out')
   }
 }

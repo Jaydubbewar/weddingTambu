@@ -5,13 +5,13 @@
       <button class="btn-search btn-outline-success" type="submit">Search</button>
     </form> -->
     <div class="navbar-brand">
-      <a routerLink="vendor-signup">&nbsp;Register Busniess &nbsp;</a>&nbsp;
-      <a (click)="check()">&nbsp;Vendors&nbsp;</a>
+      <a *ngIf="!boll" routerLink="log-signup">&nbsp;Login/SignUp&nbsp;</a>&nbsp;
+      <a *ngIf="boll" (click)="signout()">&nbsp;LogOut&nbsp;</a>&nbsp;      
     </div>
 
-    <div class="navbar-brand">
-     <a routerLink="log-signup">&nbsp;Login/SignUp&nbsp;</a>&nbsp;
-
+    <div *ngIf="boll" class="navbar-brand">
+      <a routerLink="vendor-signup">&nbsp;Register Busniess &nbsp;</a>&nbsp;
+      <a (click)="check()">&nbsp;Vendors&nbsp;</a>
     </div>
   </div>
 </nav>

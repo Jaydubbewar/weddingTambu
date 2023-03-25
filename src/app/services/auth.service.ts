@@ -29,7 +29,6 @@ export class AuthService {
     return this.vrfy;
   }
 
-
   login(email:any,password:any){
     this.fireauth.signInWithEmailAndPassword(email,password).then((user)=>{
       this.fireauth.onAuthStateChanged(user => {
@@ -37,19 +36,19 @@ export class AuthService {
           this.usr=user.uid;
           console.log(user,this.usr,user.emailVerified,'aaaaaaaaaa')
           
-          this.vrfy = user.emailVerified
-          if(!this.vrfy){
-            user.sendEmailVerification()
-              .then(function() {
-                alert('You need to verify email and the try logging in, verification email has been sent')
-              })
-              .catch(function(error) {
-                alert('Error occurred while sending email, try again')
-              });
-          }else{
+          // this.vrfy = user.emailVerified
+          // if(!this.vrfy){
+          //   user.sendEmailVerification()
+          //     .then(function() {
+          //       alert('You need to verify email and the try logging in, verification email has been sent')
+          //     })
+          //     .catch(function(error) {
+          //       alert('Error occurred while sending email, try again')
+          //     });
+          // }else{
             localStorage.setItem('token','item');
             alert('login successful')
-          }
+          // }
           }
       });
      
@@ -75,7 +74,7 @@ export class AuthService {
 
  signout(){
   this.fireauth.signOut().then(()=>{
-    localStorage.removeItem('item')
+    localStorage.removeItem('token')
     this.usr = ''
     this.vrfy = false
   },err=>{

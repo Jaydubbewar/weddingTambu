@@ -17,8 +17,22 @@ export class HeaderComponent {
 
   ur: any;
   urr: any;
-
+  boll = false;
   constructor(private auth: AuthService, private wedt: WeddtambuService, private router: Router) { }
+
+  ngOnInit(): void{
+    this.router.events.subscribe((val:any)=>{
+      if(val.url){
+        console.log(val.url)
+        this.ur = this.auth.getCurrentUser();
+        if (this.ur != '') {
+          this.boll = true 
+        }else{
+          this.boll = false
+        }
+      }
+    })
+  }
 
   async check() {
     this.ur = this.auth.getCurrentUser();
@@ -34,5 +48,10 @@ export class HeaderComponent {
         this.router.navigate(['/app-dashboard']);
       }
     }
+  }
+
+  signout(){
+    this.auth.signout();
+    alert('sign out')
   }
 }

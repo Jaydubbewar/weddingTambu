@@ -61,15 +61,23 @@ this.showLogin=true;
 
   login(){
     console.log(this.loginForm.value.Lemail,this.loginForm.value.Lpwd)
-    
-    this.auth.login(this.loginForm.value.Lemail,this.loginForm.value.Lpwd);
-    console.log(this.auth.getVerified())
-    if(!this.auth.getVerified()){
-      this.auth.signout()
-      this.router.navigate(['']);
-    }else{
-      console.log('login successful',this.auth.getCurrentUser())      
-    }
+    const ur = this.auth.getCurrentUser();
+
+    // if (ur == '') {
+      this.auth.login(this.loginForm.value.Lemail,this.loginForm.value.Lpwd);     
+      console.log(this.auth.getVerified()) 
+
+      // if(!this.auth.getVerified()){
+      //   console.log('in get verified')
+      //   this.auth.signout()
+      //   this.router.navigate(['']);
+      // }else{
+      //   console.log('login successful',this.auth.getCurrentUser())      
+      // }
+      
+    // }else{
+    //   alert('Already logged in')
+    // }
 
     this.loginForm.reset();
   }
