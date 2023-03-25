@@ -52,8 +52,8 @@ export class LogSignComponent {
     await this.af.upload(aa,this.path)
     console.log(aa)
     await this.af.ref(aa).getDownloadURL().subscribe((url)=>{
-      this.Dimage.push(url)})
-    console.log(this.Dimage)
+      this.Dimage.push(url)
+    })
     alert("Image uploaded successfully")
   }
 

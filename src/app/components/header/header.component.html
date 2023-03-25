@@ -1,26 +1,118 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>WeddingTambu</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  </head>
-  <body >
-    <nav>
-      <input type="checkbox" id="check">
-      <label for="check" class="checkbtn">
-        <i class="fas fa-bars" ></i>
-      </label>
-      <label class="logo">WeddingTambu</label>
-      <ul>   
-        <li><a href="#" class="active">Home</a></li>      
-        <li><a href="#">contact</a></li>
-        <li><a href="#">search</a></li>
-        <li><a href="#">contact</a></li>
-        <li><a href="#">feedBack</a></li>
-      </ul>
-      
-    </nav>
-  </body>
-</html>
+<nav class="navbar  bg-body-tertiary">
+  <div class="container-fluid">
+     <!-- <form class="d-flex" role="search">
+      <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn-search btn-outline-success" type="submit">Search</button>
+    </form> -->
+    <div class="navbar-brand">
+      <a *ngIf="!boll" routerLink="log-signup">&nbsp;Login/SignUp&nbsp;</a>&nbsp;
+      <a *ngIf="boll" (click)="signout()">&nbsp;LogOut&nbsp;</a>&nbsp;      
+    </div>
+
+    <div *ngIf="boll" class="navbar-brand">
+      <a routerLink="vendor-signup">&nbsp;Register Busniess &nbsp;</a>&nbsp;
+      <a (click)="check()">&nbsp;Vendors&nbsp;</a>
+    </div>
+  </div>
+</nav>
+<header>
+  <div class="container-fluid">
+    <div class="navb-logo">
+      <a routerLink="/"><img src="assets/wedding_logo-removebg-preview.png" alt="" /></a>
+    </div>
+    <div class="navb-items d-none d-xl-flex">
+      <div class="item">
+        <a routerLink="venue">Venue</a>
+      </div>
+
+      <div class="item">
+        <a routerLink="tambu">Tambu</a>
+      </div>
+
+      <div class="item">
+        <a routerLink="log-signup">Catering</a>
+      </div>
+
+      <div class="item">
+        <a routerLink="log-signup">Photography</a>
+      </div>
+
+      <div class="item">
+        <a routerLink="log-signup">Entertainment</a>
+      </div>
+
+      <div class="item">
+        <a routerLink="log-signup">Vendors</a>
+      </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <!-- <div class="mobile-toggler d-lg-none">
+      <a href="#" data-bs-toggler="modal" data-bs-target="#navbModal">
+        <fa-icon [icon]="faBars"></fa-icon>
+      </a>
+    </div> -->
+    <div class="mobile-toggler d-lg-none">
+      <button
+        type="button "
+        class="btn btn-light"
+        data-bs-toggle="modal"
+        data-bs-target="#navbModal"
+      >
+        <fa-icon [icon]="faBars"></fa-icon>
+      </button>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="navbModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img src="assets/wedding_logo-removebg-preview.png" alt="" />
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ><fa-icon [icon]="faClose"></fa-icon></button>
+          </div>
+
+          <div class="modal-body">
+                <div class="modal-line">
+                  <a href="#">Venus</a>
+                </div>
+
+                <div class="modal-line">
+                  <a href="#">Tambu</a>
+                </div>
+
+                <div class="modal-line">
+                  <a href="#">Catering</a>
+                </div>
+
+                <div class="modal-line">
+                  <a href="#">Photography</a>
+                </div>
+
+                <div class="modal-line">
+                  <a href="#">Entertainment</a>
+                </div>
+
+                <div class="modal-line">
+                  <a href="#">Vendors</a>
+                </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 

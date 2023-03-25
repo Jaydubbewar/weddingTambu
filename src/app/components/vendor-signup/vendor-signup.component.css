@@ -1,0 +1,27 @@
+.container-vendor{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+ }
+ form{
+   width: 600px;
+   margin: 35px;
+   background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+ }
+ .row-name{
+   background-color: #FFC300;
+ }
+ .form-label{
+   color: white;
+ }
+ .dropdown select{
+   width: 48%;
+   margin-top: 10px;
+   height: 35px;
+   border-radius: 5px;
+ }
+ .form-name{
+   color: white;
+ }

@@ -13,10 +13,25 @@ export class WeddtambuService {
     return this.db.collection(name).doc().set(coll);
   }
 
-  getData(name: string) {
+  getData(name: string,field:string,value:string) {
     console.log(name)
     return new Promise<any>((resolve)=> {
-      this.db.collection(name).valueChanges().subscribe(supplier => resolve(supplier))
+      this.db.collection(name,ref => ref.where(field,'==',value)).valueChanges().subscribe(supplier => resolve(supplier))
     })
   }
+
+  getVendors(name: string) {
+    console.log(name)
+    return new Promise<any>((resolve)=> {
+      this.db.collection(name,ref => ref).valueChanges().subscribe(supplier => resolve(supplier))
+    })
+  }
+
+  getUser(UserID: string) {
+    console.log(UserID)
+    return new Promise<any>((resolve)=> {
+      this.db.collection('user',ref => ref.where('UID','==',UserID)).valueChanges().subscribe(supplier => resolve(supplier))
+    })
+  }
+
 }

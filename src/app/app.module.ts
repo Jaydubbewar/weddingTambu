@@ -12,13 +12,34 @@ import { environment } from 'src/environments/environment';
 import { HeaderComponent } from './components/header/header.component';
 import { ShowDataComponent } from './components/show-data/show-data.component';
 import { LogSignComponent } from './components/log-sign/log-sign.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LogSignupComponent } from './components/log-signup/log-signup.component';
+import { HomeComponent } from './components/home/home.component';
+import { VendorSignupComponent } from './components/vendor-signup/vendor-signup.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ForgotPassComponent } from './components/forgot-pass/forgot-pass.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { VenueComponent } from './components/venue/venue.component';
+import { TambuComponent } from './components/tambu/tambu.component';
+import { CateringComponent } from './components/catering/catering.component';
+import { EntertainmentComponent } from './components/entertainment/entertainment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ShowDataComponent,
-    LogSignComponent
+    LogSignComponent,
+    LogSignupComponent,
+    HomeComponent,
+    VendorSignupComponent,
+    DashboardComponent,
+    ForgotPassComponent,
+    PageNotFoundComponent,
+    VenueComponent,
+    TambuComponent,
+    CateringComponent,
+    EntertainmentComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +49,8 @@ import { LogSignComponent } from './components/log-sign/log-sign.component';
     FormsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

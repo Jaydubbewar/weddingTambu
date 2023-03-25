@@ -1,0 +1,250 @@
+<div class="container-vendor">
+  <form class="border p-3 rounded-3" [formGroup]="registerForm" (ngSubmit)="registerSubmited()">
+    <div class="row-name g-0">
+      <div class="col text-center p-2 mb-3">
+        <span class="fs-3">Register Business</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label for="firstname" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="firstname" formControlName="firstname" />
+        <div class="form-text text-danger"
+          *ngIf="FirstName.errors?.['required'] && (FirstName.touched || FirstName.dirty)">
+          First Name is Required.
+        </div>
+        <div class="form-text text-danger"
+          *ngIf="FirstName.errors?.['minlength'] && (FirstName.touched || FirstName.dirty)">
+          First Name is too Short.
+        </div>
+      </div>
+      <div class="col mb-3">
+        <label for="lastname" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastname" formControlName="lastname" />
+        <div class="form-text text-danger"
+          *ngIf="LastName.errors?.['required'] && (LastName.touched || LastName.dirty)">
+          Last Name is Required.
+        </div>
+        <div class="form-text text-danger"
+          *ngIf="LastName.errors?.['minlength'] && (LastName.touched || LastName.dirty)">
+          Last Name is too Short.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label for="city" class="form-label">Price range</label>
+        <input type="text" class="form-control" formControlName="price" />
+        <div class="form-text text-danger" *ngIf="Price.errors?.['required'] && (Price.touched || Price.dirty)">
+          price is Required.
+        </div>
+      </div>
+
+
+      <div class="col mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" formControlName="city" />
+        <div class="form-text text-danger" *ngIf="City.errors?.['required'] && (City.touched || City.dirty)">
+          City is Required.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col mb-3">
+        <label for="mobile" class="form-label">Mobile No</label>
+        <input type="text" class="form-control" id="mobile" formControlName="mobile" />
+        <div class="form-text text-danger" *ngIf="Mobile.errors?.['required'] && (Mobile.touched || Mobile.dirty)">
+          Mobile no is Required.
+        </div>
+        <div class="form-text text-danger" *ngIf="Mobile.errors?.['pattern'] && (Mobile.touched || Mobile.dirty)">
+          Mobile no is Invalid.
+        </div>
+        <div class="form-text text-danger" *ngIf="Mobile.errors?.['minlength'] && (Mobile.touched || Mobile.dirty)">
+          Mobile no is Short.
+        </div>
+        <div class="form-text text-danger" *ngIf="Mobile.errors?.['maxlength'] && (Mobile.touched || Mobile.dirty)">
+          Mobile no is Invalid.
+        </div>
+      </div>
+      <div class="col mb-3">
+        <label for="message-text" class="form-label">About Your Business</label>
+        <input type="text" class="form-control" formControlName="about" />
+        <div class="form-text text-danger" *ngIf="About.errors?.['required'] && (About.touched || About.dirty)">
+          About is Required.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label for="city" class="form-label">Payment policy</label>
+        <input type="text" class="form-control" formControlName="policy" />
+        <div class="form-text text-danger" *ngIf="Policy.errors?.['required'] && (Policy.touched || Policy.dirty)">
+          policy is required.
+        </div>
+      </div>
+      <div class="col mb-3">
+        <label for="message-text" class="form-label">Business Name</label>
+        <input type="text" class="form-control" formControlName="bname" />
+        <div class="form-text text-danger" *ngIf="Bname.errors?.['required'] && (Bname.touched || Bname.dirty)">
+          Business name is Required.
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <div class="col mb-1">
+        <label for="Btype" class="form-name">Business Type</label>
+      </div>
+      <select formControlName="btype" [(ngModel)]="Bustype">
+        <option default>Business Type</option>
+        <option>Venue</option>
+        <option>Tambu</option>
+        <option>Catering</option>
+        <option>Photographer</option>
+        <option>Entertainment</option>
+        <option>Vendors</option>
+      </select>
+      <div class="form-text text-danger" *ngIf="Btype.errors?.['required'] && (Btype.touched || Btype.dirty)">
+        Business type is Required.
+      </div>
+    </div>
+
+
+
+
+    <div class="row" [ngSwitch]="Bustype">
+      <div *ngSwitchCase="'Venue'">
+        <!------venue ------->
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Area</label>
+          <input type="text" class="form-control" formControlName="area" />
+          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
+            Area is Required.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Location</label>
+          <input type="text" class="form-control" formControlName="location" />
+          <div class="form-text text-danger"
+            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
+            Location is Required.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Available Rooms</label>
+          <input type="text" class="form-control" formControlName="rooms" />
+
+        </div>
+      </div>
+
+      <!-------Tambu-->
+      <div *ngSwitchCase="'Tambu'">
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Area</label>
+          <input type="text" class="form-control" formControlName="area" />
+          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
+            Area is Required.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Location</label>
+          <input type="text" class="form-control" formControlName="location" />
+          <div class="form-text text-danger"
+            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
+            Location is Required.
+          </div>
+        </div>
+      </div>
+
+      <!------Catering-->
+      <div *ngSwitchCase="'Catering'">
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Area</label>
+          <input type="text" class="form-control" formControlName="area" />
+          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
+            Area is Required.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Location</label>
+          <input type="text" class="form-control" formControlName="location" />
+          <div class="form-text text-danger"
+            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
+            Location is Required.
+          </div>
+        </div>
+      </div>
+
+      <!-----------Phototgrapher-->
+      <div *ngSwitchCase="'Photographer'">
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Area</label>
+          <input name="SignPass" type="text" class="form-control" formControlName="area" />
+          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
+            Area is Required.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Location</label>
+          <input name="SignPass" type="text" class="form-control" formControlName="location" />
+          <div class="form-text text-danger"
+            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
+            Location is Required.
+          </div>
+        </div>
+      </div>
+
+      <!-----------Entertainment------->
+      <div *ngSwitchCase="'Entertainment'">
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Area</label>
+          <input type="text" class="form-control" formControlName="area" />
+          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
+            Area is Required.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Location</label>
+          <input type="text" class="form-control" formControlName="location" />
+          <div class="form-text text-danger"
+            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
+            Location is Required.
+          </div>
+        </div>
+      </div>
+
+      <!------------Vendors--------->
+      <div *ngSwitchCase="'Vendors'">
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Area</label>
+          <input type="text" class="form-control" formControlName="area">
+          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
+            Area is Required.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message-text" class="form-label">Location</label>
+          <input type="text" class="form-control" formControlName="location">
+          <div class="form-text text-danger"
+            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
+            Location is Required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-6 offset-3">
+        <div class="d-grid">
+          <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary">
+            Register
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
