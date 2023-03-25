@@ -12,7 +12,6 @@ export class AuthService {
   constructor(private fireauth: AngularFireAuth) { }
 
   forgotPass(email:string){
-    // if()
     this.fireauth.sendPasswordResetEmail(email).then(()=>{
       alert('email link has been sent')
     },
@@ -30,25 +29,28 @@ export class AuthService {
   }
 
   login(email:any,password:any){
-    this.fireauth.signInWithEmailAndPassword(email,password).then((user)=>{
+    this.fireauth.signInWithEmailAndPassword(email,password).then(res =>{
+      
       this.fireauth.onAuthStateChanged(user => {
         if (user) {
-          this.usr=user.uid;
+          
           console.log(user,this.usr,user.emailVerified,'aaaaaaaaaa')
           
-          // this.vrfy = user.emailVerified
-          // if(!this.vrfy){
-          //   user.sendEmailVerification()
-          //     .then(function() {
-          //       alert('You need to verify email and the try logging in, verification email has been sent')
-          //     })
-          //     .catch(function(error) {
-          //       alert('Error occurred while sending email, try again')
-          //     });
-          // }else{
-            localStorage.setItem('token','item');
+          this.vrfy = user.emailVerified
+          if(!this.vrfy){
+            user.sendEmailVerification()
+              .then(function() {
+                console.log('You need to verify email and the try logging in')
+                alert('You need to verify email and the try logging in, verification email has been sent')
+              })
+              .catch(function(error) {
+                alert('Error occurred while sending email, try again')
+              });
+          }else{
+            this.usr=user.uid;
+            localStorage.setItem('UID',user.uid);
             alert('login successful')
-          // }
+          }
           }
       });
      
@@ -60,9 +62,15 @@ export class AuthService {
   }
 
   register(email:any,password:any){
-    this.fireauth.createUserWithEmailAndPassword(email,password).then(()=>{
+    this.fireauth.createUserWithEmailAndPassword(email,password).then(res=>{
       alert('registration successful')
-      console.log('registration successful')
+      
+      res.user?.sendEmailVerification().then(()=>{
+        alert('Email has been sent to registered email address, please verify and log in')
+      },(err:any)=>{
+        alert('Not able to send email to given address')
+      })
+
     },
     err=>{
       alert('something went wrong')
@@ -71,12 +79,12 @@ export class AuthService {
   }
 
 
-
  signout(){
   this.fireauth.signOut().then(()=>{
     localStorage.removeItem('token')
     this.usr = ''
     this.vrfy = false
+    console.log('in sign out')
   },err=>{
     alert('error while logout')
   })
