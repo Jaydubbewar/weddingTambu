@@ -1,0 +1,52 @@
+.home {
+    /* background-image: url("../../assets/img/wedding-mandap.jpg"); */
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 80vh;
+    justify-content: center;
+    background-position: center;
+    align-items: center;
+    background-size: cover;
+    display: flex;
+  }
+  
+  .search-box {
+    color: #f5f4f2;
+    text-align: center;
+    margin: 18rem 0 0 0;
+  }
+  .search-box h1 {
+    font-size: 3rem;
+    text-transform: capitalize;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+  }
+  .search-box p {
+    font-size: 1.5rem;
+    margin: 0.5rem;
+  }
+  .search-field {
+    width: 15rem;
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffc300;
+  }
+  .btn {
+    margin-bottom: 4px;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.7rem;
+    text-transform: capitalize;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    background-color: #ffc300;
+    box-shadow: rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease all;
+    cursor: pointer;
+    outline: none;
+    color: white;
+  }
+  btn:hover {
+    transform: translate(-1rem);
+    transition: all 0.5s ease;
+  }

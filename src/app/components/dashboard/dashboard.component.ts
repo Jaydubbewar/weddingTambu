@@ -37,6 +37,7 @@ export class DashboardComponent {
    
   }
   submit(){
+    console.log('In submit')
     const dta = {
       area: this.busniessFrom.value.busName,
       about: this.busniessFrom.value.description

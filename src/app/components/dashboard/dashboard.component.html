@@ -1,80 +1,100 @@
-<div class="add-product">
+<!-- <div class="add-product">
   <h1>Update Details</h1>
   <p class="p-message">{{addProductMessage}}</p>
   <form [formGroup]="busniessFrom" (ngSubmit)="submit()" class="common-form">
-    <input
-      class="form-input"
-      ngModel
-      name="name"
-      type="text"
-      placeholder="Enter Busniess Name"
-      formControlName="busName"
-    />
+    <input class="form-input" ngModel name="name" type="text" placeholder="Enter Busniess Name"
+      formControlName="busName" />
     <br>
 
-    <input
-      class="form-input"
-      ngModel
-      name="price"
-      type="text"
-      placeholder="Enter Your price Rang"
-      formControlName="pricePack"
-    />
-<br>
-    <input
-      class="form-input"
-      ngModel
-      name="color"
-      type="text"
-      placeholder="Enter Package"
-      formControlName="package"
-    />
-<br>
-    <input
-      class="form-input"
-      ngModel
-      name="category"
-      type="text"
-      placeholder="Enter Policy"
-      formControlName="policy"
-    />
-<br>
-    <textarea
-        class="form-input"
-        ngModel
-        name="description"
-        type="text"
-        placeholder="Enter Venue Description"
-        formControlName="description"
-    ></textarea>
-<br>
+    <input class="form-input" ngModel name="price" type="text" placeholder="Enter Your price Rang"
+      formControlName="pricePack" />
+    <br>
+    <input class="form-input" ngModel name="color" type="text" placeholder="Enter Package" formControlName="package" />
+    <br>
+    <input class="form-input" ngModel name="category" type="text" placeholder="Enter Policy" formControlName="policy" />
+    <br>
+    <textarea class="form-input" ngModel name="description" type="text" placeholder="Enter Venue Description"
+      formControlName="description"></textarea>
+    <br>
     <button class="form-button">Update Busniess Details</button>
   </form>
 </div>
 
 
-<tbody>
-  <div class="card-group">
-      <div class="container bcontent">
-        <div class="card" style="width: 1000px;">
-          <div class="row no-gutters">
-            <div class="col-sm-5">
-              <img class="card-img" src="" onerror="this.src='assets/alternate.png';">
-            </div>
-            <div class="col-sm-7">
-              <div class="card-body">
-                <h5 class="card-title">{{this.busniessFrom.value.busName}}</h5>
-                <p class="card-text">{{this.busniessFrom.value.pricePack}}</p>
-                <p class="card-text">{{this.busniessFrom.value.package}}</p>                    
-                <p class="card-text">{{this.busniessFrom.value.policy}}</p>            
-                <p class="card-text">{{this.busniessFrom.value.description}}</p>
-                <a href="#" class="btn btn-warning">Know More</a>
+ -->
+
+
+<div class="container rounded bg-white mt-5 mb-5">
+  <form [formGroup]="busniessFrom" (ngSubmit)="submit()" class="common-form">
+  <div class="row">
+      <div class="col-md-3 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class=" mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold text-white">{{this.busniessFrom.value.busName}}</span><span class="text-white">edogaru@mail.com.my</span><span> </span></div>
+      </div>
+      <div class="col-md-5 border-right">
+       
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="text-right text-white">Profile Settings</h4>
               </div>
-            </div>
+              <div class="row mt-2">
+                  <div class="col-md-6"><label class="labels">*Name</label><input formControlName="busName" type="text" class="form-control" placeholder="Business Name" value=""></div>
+                  <div class="col-md-6"><label class="labels">*Price</label><input formControlName="pricePack" type="text" class="form-control" value="" placeholder="Last Name"></div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">*Package</label><input formControlName="package" type="text" class="form-control" placeholder="Enter Phone Number" value=""></div>
+                  <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="Enter Address Line 1" value=""></div>
+                  <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="Enter Address Line 2" value=""></div>
+                  <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="Pin Code" value=""></div>
+                  <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="State" value=""></div>
+                  <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Loction" value=""></div>
+                  <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="Enter Email Id" value=""></div>
+                  <div class="col-md-12"><label class="labels">Business Name</label><input type="text" class="form-control" placeholder="Business Name" value=""></div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-6"><label class="labels">*Policy</label><input formControlName="policy" type="text" class="form-control" placeholder="Country" value=""></div>
+                  <div class="col-md-6"><label class="labels">*Description</label><input formControlName="description" type="text" class="form-control" value="" placeholder="City"></div>
+              </div>
+              <div class="mt-5 text-center"><button class="btn btn-primary form-button" type="button">Update Profile</button></div>
+              
+          </div>
+        
+      </div>
+      <div class="col-md-4">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center experience text-white "><span>Additional Details </span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Edit</span></div><br>
+              <div class="col-md-12"><label class="labels">Package</label><input formControlName="package" type="text" class="form-control" placeholder="Policy" value=""></div> <br>
+              <div class="col-md-12"><label class="labels">Avilable Rooms</label><input type="text" class="form-control" placeholder="Avilable Rooms" value=""></div>
+          </div>
+      </div>
+  </div>
+  <div class="mt-5 text-center"><button class="form-button btn btn-primary">Update Busniess Details</button></div>
+  <button class="form-button btn btn-primary">Update Busniess Details</button>
+  <button class="form-button">Update Busniess Details</button>
+
+</form>
+</div>
+
+
+<!-- CARD -->
+<div class="card-group">
+  <div class="container bcontent">
+    <div class="card" style="width: 1000px;">
+      <div class="row no-gutters">
+        <div class="col-sm-5">
+          <img class="card-img" src="" onerror="this.src='assets/alternate.png';">
+        </div>
+        <div class="col-sm-7">
+          <div class="card-body">
+            <h5 class="card-title">{{this.busniessFrom.value.busName}}</h5>
+            <p class="card-text">{{this.busniessFrom.value.pricePack}}</p>
+            <p class="card-text">{{this.busniessFrom.value.package}}</p>
+            <p class="card-text">{{this.busniessFrom.value.policy}}</p>
+            <p class="card-text">{{this.busniessFrom.value.description}}</p>
+            <a href="#" class="btn btn-warning">Know More</a>
           </div>
         </div>
       </div>
-      <br>
+    </div>
   </div>
-</tbody>
-
+  <br>
+</div>
