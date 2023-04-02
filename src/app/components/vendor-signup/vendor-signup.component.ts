@@ -126,13 +126,15 @@ export class VendorSignupComponent {
   }
 
   async registerSubmited() {
-    this.urr = await this.data.getUser(this.ur);
+    this.urr = await this.data.checkUser(this.ur);
 
     if (this.urr == '') {
       console.log(this.registerForm.value);
+      this.registerForm.value.pwd = this.ur
       const DataVenue = this.registerForm.value.btype!;
       this.data.addData(DataVenue, this.registerForm.value)
-      this.data.addData('user', { email: this.registerForm.value.email, vendor: DataVenue, UID: this.auth.getCurrentUser() })
+      this.data.addData('user', { email: this.registerForm.value.email, vendor: DataVenue, UID: localStorage.getItem('UID') })
+      alert('Successfully vendor is registered ')
     }
     else {
       alert('already a registered vendor ')

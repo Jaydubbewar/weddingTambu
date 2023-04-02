@@ -23,8 +23,26 @@ export class DashboardComponent {
     description: new FormControl('')
   })
 
+  constructor(private router: Router, private wedt: WeddtambuService, private af: AngularFireStorage, private auth: AuthService) {}
+  
+  ur:any=''
+
+  ngOnInit(): void{
+    this.ur = this.auth.getCurrentUser();
+    if (this.ur != '') {
+      this.wedt.getUser(this.ur).then(data => {
+        console.log('User data:', data);
+      });
+    }
+   
+  }
   submit(){
-    
+    const dta = {
+      area: this.busniessFrom.value.busName,
+      about: this.busniessFrom.value.description
+    };
+
+    this.wedt.update(dta)
   }
 
   get BusName(): FormControl {

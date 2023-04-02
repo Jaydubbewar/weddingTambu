@@ -34,13 +34,13 @@ export class HeaderComponent {
     })
   }
 
-  async check() {
+  check() {
     this.ur = this.auth.getCurrentUser();
     if (this.ur == '') {
       this.router.navigate(['/log-signup']);
     }
     else {
-      this.urr = await this.wedt.getUser(this.ur);
+      this.urr = this.wedt.checkUser(this.ur)
       if (this.urr == '') {
         this.router.navigate(['/vendor-signup']);
       }

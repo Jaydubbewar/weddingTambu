@@ -11,6 +11,7 @@ export class HomeComponent {
 
   constructor(private wedt:WeddtambuService,private auth:AuthService){
     this.ur = this.auth.getCurrentUser();
+    
   }
   
   products: any;

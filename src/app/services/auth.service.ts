@@ -7,7 +7,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class AuthService {
 
   usr:string=''
-  vrfy:boolean=false
+  // vrfy:boolean=false
+  vendor:any
 
   constructor(private fireauth: AngularFireAuth) { }
 
@@ -24,9 +25,11 @@ export class AuthService {
   getCurrentUser(){  
     return this.usr;
   }
-  getVerified(){
-    return this.vrfy;
-  }
+  // getVerified(){
+  //   console.log(this.vendor.emailVerified)
+  //   return this.vrfy;
+    
+  // }
 
   login(email:any,password:any){
     this.fireauth.signInWithEmailAndPassword(email,password).then(res =>{
@@ -36,8 +39,9 @@ export class AuthService {
           
           console.log(user,this.usr,user.emailVerified,'aaaaaaaaaa')
           
-          this.vrfy = user.emailVerified
-          if(!this.vrfy){
+          // this.vrfy = user.emailVerified
+          // this.vendor = user
+          if(!user.emailVerified){
             user.sendEmailVerification()
               .then(function() {
                 console.log('You need to verify email and the try logging in')
@@ -48,7 +52,7 @@ export class AuthService {
               });
           }else{
             this.usr=user.uid;
-            localStorage.setItem('UID',user.uid);
+            // localStorage.setItem('UID',user.uid);
             alert('login successful')
           }
           }
@@ -81,9 +85,9 @@ export class AuthService {
 
  signout(){
   this.fireauth.signOut().then(()=>{
-    localStorage.removeItem('token')
+    // localStorage.removeItem('token')
     this.usr = ''
-    this.vrfy = false
+    // this.vrfy = false
     console.log('in sign out')
   },err=>{
     alert('error while logout')
