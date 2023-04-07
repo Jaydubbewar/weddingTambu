@@ -45,7 +45,7 @@ export class WeddtambuService {
           console.log('Promise resolved with data:', this.vendor);
   
           // Get a different collection
-          const otherCollectionRef = this.db.collection(this.vendor[0].vendor, ref => ref.where('UID', '==', UserID));
+          const otherCollectionRef = this.db.collection(this.vendor[0].vendor, ref => ref.where('uid', '==', UserID));
           
           // Get the ID of the first document in the collection
           otherCollectionRef.get().toPromise().then((querySnapshot) => {

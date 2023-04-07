@@ -41,12 +41,21 @@ export class HeaderComponent {
     }
     else {
       this.urr = this.wedt.checkUser(this.ur)
-      if (this.urr == '') {
-        this.router.navigate(['/vendor-signup']);
-      }
-      else{
-        this.router.navigate(['/app-dashboard']);
-      }
+      
+      this.urr.then((result: string | any[]) => {
+        if (result.length==0) {
+          this.router.navigate(['/vendor-signup']);
+        }
+        else{
+          this.router.navigate(['/app-dashboard']);
+        }
+
+        console.log("Length of resolved value: ", result.length);
+      }).catch((error: any) => {
+        console.error("Promise rejected with error: ", error);
+      });
+
+     
     }
   }
 

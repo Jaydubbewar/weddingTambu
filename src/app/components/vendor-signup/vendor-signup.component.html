@@ -5,6 +5,7 @@
         <span class="fs-3">Register Business</span>
       </div>
     </div>
+
     <div class="row">
       <div class="col mb-3">
         <label for="firstname" class="form-label">First Name</label>
@@ -31,24 +32,23 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col mb-3">
-        <label for="email" class="form-label">Email ID</label>
-        <input type="email" class="form-control" id="email" formControlName="email" />
-        <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
-          Email is Required.
+        <label for="bname" class="form-label">Business Name</label>
+        <input type="text" class="form-control" id="bname" formControlName="bname" />
+        <div class="form-text text-danger" *ngIf="Bname.errors?.['required'] && (Bname.touched || Bname.dirty)">
+          Business Name is Required.
         </div>
-        <div class="form-text text-danger" *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">
-          Email is Invalid.
+        <div class="form-text text-danger" *ngIf="Bname.errors?.['minlength'] && (Bname.touched || Bname.dirty)">
+          Business Name is too Short.
         </div>
       </div>
-
-
       <div class="col mb-3">
-        <label for="city" class="form-label">City</label>
-        <input type="text" class="form-control" formControlName="city" />
-        <div class="form-text text-danger" *ngIf="City.errors?.['required'] && (City.touched || City.dirty)">
-          City is Required.
+        <label for="Price" class="form-label">Price Range</label>
+        <input type="text" class="form-control" id="price" formControlName="price" />
+        <div class="form-text text-danger" *ngIf="Price.errors?.['required'] && (Price.touched || Price.dirty)">
+          Price range is Required.
         </div>
       </div>
     </div>
@@ -71,33 +71,30 @@
         </div>
       </div>
       <div class="col mb-3">
-        <label for="message-text" class="form-label">About Your Business</label>
-        <input type="text" class="form-control" formControlName="about" />
-        <div class="form-text text-danger" *ngIf="About.errors?.['required'] && (About.touched || About.dirty)">
-          About is Required.
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" formControlName="city" />
+        <div class="form-text text-danger" *ngIf="City.errors?.['required'] && (City.touched || City.dirty)">
+          City is Required.
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col mb-3">
-        <label for="pwd" class="form-label">Password</label>
-        <input type="password" class="form-control" id="pwd" formControlName="pwd" />
-        <div class="form-text text-danger" *ngIf=" PWD.errors?.['required'] && (PWD.touched || PWD.dirty)">
-          Password is Required.
-        </div>
-        <div class="form-text text-danger"
-          *ngIf="PWD.errors?.['minlength'] || PWD.errors?.['maxlength']  && (PWD.touched || PWD.dirty)">
-          Password Should be at least 6 and at max characters long
-        </div>
-      </div>
-      <div class="col mb-3">
-        <label for="message-text" class="form-label">Business Name</label>
-        <input type="text" class="form-control" formControlName="bname" />
-        <div class="form-text text-danger" *ngIf="Bname.errors?.['required'] && (Bname.touched || Bname.dirty)">
-          Business name is Required.
-        </div>
+
+    <!-- <div class="row"> -->
+    <div class="col mb-3">
+      <label for="policy" class="form-label">Payment policy</label>
+      <input type="text" class="form-control" id="policy" formControlName="policy" />
+      <div class="form-text text-danger" *ngIf=" Policy.errors?.['required'] && (Policy.touched || Policy.dirty)">
+        Policy about payments is Required.
       </div>
     </div>
+    <div class="col mb-3">
+      <label for="message-text" class="form-label">About Your Business</label>
+      <textarea type="textarea" class="form-control" formControlName="about"></textarea>
+      <div class="form-text text-danger" *ngIf="About.errors?.['required'] && (About.touched || About.dirty)">
+        About is Required.
+      </div>
+    </div>
+    <!-- </div> -->
 
     <div class="dropdown">
       <div class="col mb-1">
@@ -124,118 +121,115 @@
       <div *ngSwitchCase="'Venue'">
         <!------venue ------->
         <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Area</label>
+          <label for="message-text" class="form-label">Area of function hall or lawn</label>
           <input type="text" class="form-control" formControlName="area" />
-          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
-            Area is Required.
-          </div>
         </div>
         <div class="form-group mb-3">
           <label for="message-text" class="form-label">Location</label>
           <input type="text" class="form-control" formControlName="location" />
-          <div class="form-text text-danger"
-            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
-            Location is Required.
+        </div>
+
+        <div class="row">
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Available Rooms</label>
+            <input type="text" class="form-control" formControlName="rooms" />
+          </div>
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Parking space</label>
+            <input type="text" class="form-control" formControlName="parking" />
           </div>
         </div>
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Available Rooms</label>
-          <input type="text" class="form-control" formControlName="rooms" />
+
+        <div class="row">
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Catering policy</label>
+            <input type="text" class="form-control" formControlName="cater" />
+          </div>
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Decoration policy</label>
+            <input type="text" class="form-control" formControlName="decor" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Capacity</label>
+            <input type="text" class="form-control" formControlName="capacity" />
+          </div>
 
         </div>
       </div>
 
       <!-------Tambu-->
       <div *ngSwitchCase="'Tambu'">
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Area</label>
-          <input type="text" class="form-control" formControlName="area" />
-          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
-            Area is Required.
+        <div class="row">
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Experience</label>
+            <input type="text" class="form-control" formControlName="tambuexperience" />
+          </div>
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Music system availability</label>
+            <input type="text" class="form-control" formControlName="music" />
           </div>
         </div>
         <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Location</label>
-          <input type="text" class="form-control" formControlName="location" />
-          <div class="form-text text-danger"
-            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
-            Location is Required.
-          </div>
+          <label for="message-text" class="form-label">Stage availability</label>
+          <input type="text" class="form-control" formControlName="stage" />
         </div>
       </div>
 
       <!------Catering-->
       <div *ngSwitchCase="'Catering'">
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Area</label>
-          <input type="text" class="form-control" formControlName="area" />
-          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
-            Area is Required.
+        <div class="row">
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Per plate price</label>
+            <input type="text" class="form-control" formControlName="plate" />
           </div>
-        </div>
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Location</label>
-          <input type="text" class="form-control" formControlName="location" />
-          <div class="form-text text-danger"
-            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
-            Location is Required.
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Other services</label>
+            <input type="text" class="form-control" formControlName="services" />
           </div>
         </div>
       </div>
 
       <!-----------Phototgrapher-->
       <div *ngSwitchCase="'Photographer'">
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Area</label>
-          <input name="SignPass" type="text" class="form-control" formControlName="area" />
-          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
-            Area is Required.
+        <div class="row">
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Experience</label>
+            <input type="text" class="form-control" formControlName="photoexperience" />
           </div>
-        </div>
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Location</label>
-          <input name="SignPass" type="text" class="form-control" formControlName="location" />
-          <div class="form-text text-danger"
-            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
-            Location is Required.
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Delivery time</label>
+            <input type="text" class="form-control" formControlName="delivery" />
           </div>
         </div>
       </div>
 
       <!-----------Entertainment------->
       <div *ngSwitchCase="'Entertainment'">
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Area</label>
-          <input type="text" class="form-control" formControlName="area" />
-          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
-            Area is Required.
+        <div class="row">
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Entertainment type</label>
+            <input type="text" class="form-control" formControlName="type" />
           </div>
-        </div>
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Location</label>
-          <input type="text" class="form-control" formControlName="location" />
-          <div class="form-text text-danger"
-            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
-            Location is Required.
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Experience</label>
+            <input type="text" class="form-control" formControlName="experience"/>
           </div>
         </div>
       </div>
 
       <!------------Vendors--------->
       <div *ngSwitchCase="'Vendors'">
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Area</label>
-          <input type="text" class="form-control" formControlName="area">
-          <div class="form-text text-danger" *ngIf="Area.errors?.['required'] && (Area.touched || Area.dirty)">
-            Area is Required.
+        <div class="row">
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Art </label>
+            <input type="text" class="form-control" formControlName="type" />
           </div>
-        </div>
-        <div class="form-group mb-3">
-          <label for="message-text" class="form-label">Location</label>
-          <input type="text" class="form-control" formControlName="location">
-          <div class="form-text text-danger"
-            *ngIf="Location.errors?.['required'] && (Location.touched || Location.dirty)">
-            Location is Required.
+          <div class="form-group mb-3">
+            <label for="message-text" class="form-label">Experience</label>
+            <input type="text" class="form-control" formControlName="artexperience"/>
           </div>
         </div>
       </div>

@@ -15,23 +15,57 @@ export class DashboardComponent {
   addProductMessage:string|undefined;
 
 
-  busniessFrom= new FormGroup({
-    busName: new FormControl(''),
-    pricePack: new FormControl(''),
-    package: new FormControl(''),
-    policy:new FormControl(''),
-    description: new FormControl('')
-  })
-
   constructor(private router: Router, private wedt: WeddtambuService, private af: AngularFireStorage, private auth: AuthService) {}
   
   ur:any=''
+  VendorData:any
 
   ngOnInit(): void{
     this.ur = this.auth.getCurrentUser();
     if (this.ur != '') {
       this.wedt.getUser(this.ur).then(data => {
-        console.log('User data:', data);
+        this.VendorData=data[0]
+        console.log('User data:', data[0]);
+        console.log('User data:', this.VendorData.btype);
+        this.Bustype = this.VendorData.btype
+        this.busniessFrom.setValue({
+          busName:this.VendorData.bname,
+          description:this.VendorData.about,
+          firstname: this.VendorData.firstname,
+          lastname: this.VendorData.lastname,
+          bname: this.VendorData.bname,
+          price: this.VendorData.price,
+          city: this.VendorData.city,
+          mobile:this.VendorData.mobile,
+          about:this.VendorData.about,
+          uid:this.VendorData.uid,
+          policy:this.VendorData.policy,
+          btype:this.VendorData.btype,
+      
+          area:this.VendorData.area,  // Venue variables
+          location:this.VendorData.location,
+          rooms: this.VendorData.rooms,
+          parking:this.VendorData.parking,
+          cater: this.VendorData.cater,
+          decor:this.VendorData.decor,
+          capacity:this.VendorData.capacity,
+      
+          tambuexperience: this.VendorData.tambuexperience,  //Tambu
+          music: this.VendorData.music,
+          stage: this.VendorData.stage,
+      
+          plate: this.VendorData.plate, //catering
+          services: this.VendorData.services,
+      
+          photoexperience:this.VendorData.photoexperience,   //photographer
+          delivery:this.VendorData.delivery,
+      
+          type:  this.VendorData.type, //enterainment
+          experience:this.VendorData.experience,
+      
+          artist:  this.VendorData.artist, //other vendors
+          artexperience: this.VendorData.artexperience,
+        });
       });
     }
    
@@ -46,192 +80,174 @@ export class DashboardComponent {
     this.wedt.update(dta)
   }
 
-  get BusName(): FormControl {
-    return this.busniessFrom.get('busName') as unknown as FormControl;
+  Bustype: string = 'Vendors'
+
+  
+  
+  busniessFrom= new FormGroup({
+
+    busName: new FormControl(''),
+    description: new FormControl(''),
+    firstname: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    lastname: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    bname: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),]),
+    price: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    mobile: new FormControl('', [
+      Validators.required,
+      Validators.pattern("[0-9]*"),
+      Validators.minLength(10),
+      Validators.maxLength(10),
+    ]),
+    about: new FormControl('', [Validators.required]),
+    uid: new FormControl(''),
+    policy: new FormControl('', [Validators.required]),
+    btype: new FormControl('', [Validators.required]),
+
+    area: new FormControl(''),    // Venue variables
+    location: new FormControl(''),
+    rooms: new FormControl(''),
+    parking: new FormControl(''),
+    cater: new FormControl(''),
+    decor: new FormControl(''),
+    capacity: new FormControl(''),
+
+    tambuexperience: new FormControl(''),  //Tambu
+    music: new FormControl(''),
+    stage: new FormControl(''),
+
+    plate: new FormControl(''),   //catering
+    services: new FormControl(''),
+
+    photoexperience: new FormControl(''),  //photographer
+    delivery: new FormControl(''),
+
+    type: new FormControl(''),    //enterainment
+    experience: new FormControl(''),
+
+    artist: new FormControl(''),    //other vendors
+    artexperience: new FormControl(''), 
+    
+  })
+
+
+  
+  get FirstName(): FormControl {
+    return this.busniessFrom.get('firstname') as FormControl;
   }
 
-  get PricePack(): FormControl {
-    return this.busniessFrom.get('pricePack') as unknown as FormControl;
+  get LastName(): FormControl {
+    return this.busniessFrom.get('lastname') as FormControl;
   }
 
-  get Package(): FormControl {
-    return this.busniessFrom.get(' package') as unknown as FormControl;
+  get Price(): FormControl {
+    return this.busniessFrom.get('price') as FormControl;
+  }
+
+  get City(): FormControl {
+    return this.busniessFrom.get('city') as FormControl;
+  }
+
+  get Mobile(): FormControl {
+    return this.busniessFrom.get('mobile') as FormControl;
+  }
+
+  get About(): FormControl {
+    return this.busniessFrom.get('about') as FormControl;
   }
 
   get Policy(): FormControl {
-    return this.busniessFrom.get(' policy') as unknown as FormControl;
+    return this.busniessFrom.get('policy') as FormControl;
+  }
+  get UID(): FormControl {
+    return this.busniessFrom.get('uid') as FormControl;
   }
 
+  get Bname(): FormControl {
+    return this.busniessFrom.get('bname') as FormControl;
+  }
 
-//  ur:any;
-//  urr:any;
-//  usrData:any;
-//  constructor(private router: Router, private data: WeddtambuService, private af: AngularFireStorage, private auth: AuthService) {
-//     this.ur = this.auth.getCurrentUser();
-//     this.ok()
-//   }
+  get Btype(): FormControl {
+    return this.busniessFrom.get('btype') as FormControl;
+  }
+  get Area(): FormControl {
+    return this.busniessFrom.get('area') as FormControl;
+  }
+  get Location(): FormControl {
+    return this.busniessFrom.get('location') as FormControl;
+  }
+  get Rooms(): FormControl {
+    return this.busniessFrom.get('rooms') as FormControl;
+  }
+  get Parking(): FormControl {
+    return this.busniessFrom.get('parking') as FormControl;
+  }
+  get Cater(): FormControl {
+    return this.busniessFrom.get('cater') as FormControl;
+  }
 
-//   async ok(){
-//     const usr = await this.data.getUser(this.ur);
-//     console.log(usr[0]?.email,usr[0]?.vendor)
-//     this.usrData = await this.data.getData(usr[0]?.vendor,'email',usr[0]?.email)
-//     console.log(this.usrData)
-//   }
+  get Decor(): FormControl {
+    return this.busniessFrom.get('decor') as FormControl;
+  }
 
+  get Capacity(): FormControl {
+    return this.busniessFrom.get('capacity') as FormControl;
+  }
+
+  get TambuExperience(): FormControl {
+    return this.busniessFrom.get('tambuexperience') as FormControl;
+  }
+
+  get Music(): FormControl {
+    return this.busniessFrom.get('music') as FormControl;
+  }
+
+  get Stage(): FormControl {
+    return this.busniessFrom.get('stage') as FormControl;
+  }
+
+  get Plate(): FormControl {
+    return this.busniessFrom.get('plate') as FormControl;
+  }
+
+  get Services(): FormControl {
+    return this.busniessFrom.get('services') as FormControl;
+  }
+
+  get PhotoExperience(): FormControl {
+    return this.busniessFrom.get('photoexperience') as FormControl;
+  }
+  get Delivery(): FormControl {
+    return this.busniessFrom.get('delivery') as FormControl;
+  }
   
-//   // DATA VARIABLES  //
-
-//   Dname: string = '';
-//   Dcontact: string = '';
-//   Darea: string = '';
-//   Dloc: string = '';
-//   DpriceRange: string = '';
-//   Dpolicy: string = '';
-//   Drooms: string = '';
-//   Dabout: string = '';
-//   Ddecorations: string = '';
-//   path: string = ""
-
-//   database: string = ""
-//   Dimage: string[] = [];
-//   Dpackage: any[] = [];
-//   pname: string = ""
-//   pval: string = ""
-
-//   Bustype:string = ''
+  get Type(): FormControl {
+    return this.busniessFrom.get('type') as FormControl;
+  }
   
-//   registerForm = new FormGroup({
-//     firstname: new FormControl('', [
-//       Validators.required,
-//       Validators.minLength(2),
-//     ]),
-//     lastname: new FormControl('', [
-//       Validators.required,
-//       Validators.minLength(2),
-//     ]),
-//     email: new FormControl('', [Validators.required, Validators.email]),
-//     city: new FormControl('', [Validators.required]),
-//     policy: new FormControl('', [Validators.required]),
-//     price: new FormControl('', [Validators.required]),
-//     area: new FormControl('', [Validators.required]),
-//     mobile: new FormControl('', [
-//       Validators.required,
-//       Validators.pattern("[0-9]*"),
-//       Validators.minLength(10),
-//       Validators.maxLength(10),
-//     ]),
-//     about: new FormControl('', [Validators.required]),
-//     pwd: new FormControl('', [
-//       Validators.required,
-//       Validators.minLength(6),
-//       Validators.maxLength(10),]),
-//     bname: new FormControl('', [Validators.required]),
-//     btype: new FormControl('', [Validators.required]),
-//     location: new FormControl('', [Validators.required]),
-//     rooms: new FormControl(''),
-//   });
-
-//   get FirstName(): FormControl {
-//     return this.registerForm.get('firstname') as FormControl;
-//   }
-
-//   get LastName(): FormControl {
-//     return this.registerForm.get('lastname') as FormControl;
-//   }
-
-//   get Email(): FormControl {
-//     return this.registerForm.get('email') as FormControl;
-//   }
-
-//   get City(): FormControl {
-//     return this.registerForm.get('city') as FormControl;
-//   }
-//   get Price(): FormControl {
-//     return this.registerForm.get('price') as FormControl;
-//   }
-//   get Policy(): FormControl {
-//     return this.registerForm.get('policy') as FormControl;
-//   }
-
-//   get Mobile(): FormControl {
-//     return this.registerForm.get('mobile') as FormControl;
-//   }
-
-//   get About(): FormControl {
-//     return this.registerForm.get('about') as FormControl;
-//   }
-
-//   get PWD(): FormControl {
-//     return this.registerForm.get('pwd') as FormControl;
-//   }
-
-//   get Bname(): FormControl {
-//     return this.registerForm.get('bname') as FormControl;
-//   }
-
-//   get Btype(): FormControl {
-//     return this.registerForm.get('btype') as FormControl;
-//   }
-//   get Area(): FormControl {
-//     return this.registerForm.get('area') as FormControl;
-//   }
-//   get Location(): FormControl {
-//     return this.registerForm.get('location') as FormControl;
-//   }
-
-//   get Rooms(): FormControl {
-//     return this.registerForm.get('rooms') as FormControl;
-//   }
+  get Experience(): FormControl {
+    return this.busniessFrom.get('experience') as FormControl;
+  }
+  
+  get Artist(): FormControl {
+    return this.busniessFrom.get('artist') as FormControl;
+  }
+  
+  get Artexperience(): FormControl {
+    return this.busniessFrom.get('artexperience') as FormControl;
+  }
+  
+  
 
 
-//   // DATA METHODS  //
 
-//   package() {
-//     this.Dpackage.push({ Pname: this.pname, Pvalue: this.pval })
-//     this.pname = ''
-//     this.pval = ''
-//   }
-
-//   async registerSubmited() {
-//     this.urr = await this.data.getUser(this.ur);
-
-//     if (this.urr == '') {
-//       console.log(this.registerForm.value);
-//       const DataVenue = this.registerForm.value.btype!;
-//       this.data.addData(DataVenue, this.registerForm.value)
-//       this.data.addData('user', { email: this.registerForm.value.email, vendor: DataVenue, UID: this.auth.getCurrentUser() })
-//     }
-//     else {
-//       alert('already a registered vendor ')
-//     }
-//   }
-
-
-//   async upload($event: any) {           // FOR IMAGE UPLOAD
-
-//     this.path = $event.target.files[0]
-
-//     let aa = "/files" + Math.random() + this.path
-//     await this.af.upload(aa, this.path)
-//     console.log(aa)
-//     await this.af.ref(aa).getDownloadURL().subscribe((url) => {
-//       this.Dimage.push(url)
-//     })
-//     alert("Image uploaded successfully")
-//   }
-
-//   Dempty() {
-//     this.Dname = '';
-//     this.Dcontact = '';
-//     this.Darea = '';
-//     this.Dloc = '';
-//     this.DpriceRange = '';
-//     this.Dpolicy = '';
-//     this.Drooms = '';
-//     this.Dabout = '';
-//     this.Ddecorations = '';
-//     this.Dimage = [];
-//     this.path = ""
-//   }
 }
 
