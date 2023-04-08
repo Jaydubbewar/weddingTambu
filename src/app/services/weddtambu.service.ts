@@ -93,10 +93,11 @@ export class WeddtambuService {
     return new Promise<any>((resolve) => {
       this.db.collection(this.vendor[0].vendor).doc(this.vendorID).update(data)
         .then(() => {
-          console.log('Document successfully updated!');
+          alert('Document successfully updated!');
         })
         .catch((error) => {
           console.error('Error updating document:', error);
+          alert('Error updating document please try after some time')
         });
     })
   }

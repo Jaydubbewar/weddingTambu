@@ -12,69 +12,105 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
-  addProductMessage:string|undefined;
+  addProductMessage: string | undefined;
 
 
-  constructor(private router: Router, private wedt: WeddtambuService, private af: AngularFireStorage, private auth: AuthService) {}
-  
-  ur:any=''
-  VendorData:any
+  constructor(private router: Router, private wedt: WeddtambuService, private af: AngularFireStorage, private auth: AuthService) { }
 
-  ngOnInit(): void{
+  ur: any = ''
+  VendorData: any
+
+  ngOnInit(): void {
     this.ur = this.auth.getCurrentUser();
     if (this.ur != '') {
       this.wedt.getUser(this.ur).then(data => {
-        this.VendorData=data[0]
+        this.VendorData = data[0]
         console.log('User data:', data[0]);
         console.log('User data:', this.VendorData.btype);
+
         this.Bustype = this.VendorData.btype
         this.busniessFrom.setValue({
-          busName:this.VendorData.bname,
-          description:this.VendorData.about,
+          busName: this.VendorData.bname,
+          description: this.VendorData.about,
           firstname: this.VendorData.firstname,
           lastname: this.VendorData.lastname,
           bname: this.VendorData.bname,
           price: this.VendorData.price,
           city: this.VendorData.city,
-          mobile:this.VendorData.mobile,
-          about:this.VendorData.about,
-          uid:this.VendorData.uid,
-          policy:this.VendorData.policy,
-          btype:this.VendorData.btype,
-      
-          area:this.VendorData.area,  // Venue variables
-          location:this.VendorData.location,
+          mobile: this.VendorData.mobile,
+          about: this.VendorData.about,
+          uid: this.VendorData.uid,
+          policy: this.VendorData.policy,
+          btype: this.VendorData.btype,
+
+          area: this.VendorData.area,  // Venue variables
+          location: this.VendorData.location,
           rooms: this.VendorData.rooms,
-          parking:this.VendorData.parking,
+          parking: this.VendorData.parking,
           cater: this.VendorData.cater,
-          decor:this.VendorData.decor,
-          capacity:this.VendorData.capacity,
-      
+          decor: this.VendorData.decor,
+          capacity: this.VendorData.capacity,
+
           tambuexperience: this.VendorData.tambuexperience,  //Tambu
           music: this.VendorData.music,
           stage: this.VendorData.stage,
-      
+
           plate: this.VendorData.plate, //catering
           services: this.VendorData.services,
-      
-          photoexperience:this.VendorData.photoexperience,   //photographer
-          delivery:this.VendorData.delivery,
-      
-          type:  this.VendorData.type, //enterainment
-          experience:this.VendorData.experience,
-      
-          artist:  this.VendorData.artist, //other vendors
+
+          photoexperience: this.VendorData.photoexperience,   //photographer
+          delivery: this.VendorData.delivery,
+
+          type: this.VendorData.type, //enterainment
+          experience: this.VendorData.experience,
+
+          artist: this.VendorData.artist, //other vendors
           artexperience: this.VendorData.artexperience,
         });
       });
     }
-   
+
   }
-  submit(){
+  submit() {
     console.log('In submit')
     const dta = {
-      area: this.busniessFrom.value.busName,
-      about: this.busniessFrom.value.description
+      // area: this.busniessFrom.value.busName,
+      // about: this.busniessFrom.value.description,
+
+      firstname: this.busniessFrom.value.firstname,
+      lastname: this.busniessFrom.value.lastname,
+      bname: this.busniessFrom.value.bname,
+      price: this.busniessFrom.value.price,
+      city: this.busniessFrom.value.city,
+      mobile: this.busniessFrom.value.mobile,
+      about: this.busniessFrom.value.about,
+      uid: this.busniessFrom.value.uid,
+      policy: this.busniessFrom.value.policy,
+      btype: this.busniessFrom.value.btype,
+
+      area: this.busniessFrom.value.area,  // Venue variables
+      location: this.busniessFrom.value.location,
+      rooms: this.busniessFrom.value.rooms,
+      parking: this.busniessFrom.value.parking,
+      cater: this.busniessFrom.value.cater,
+      decor: this.busniessFrom.value.decor,
+      capacity: this.busniessFrom.value.capacity,
+
+      tambuexperience: this.busniessFrom.value.tambuexperience,  //Tambu
+      music: this.busniessFrom.value.music,
+      stage: this.busniessFrom.value.stage,
+
+      plate: this.busniessFrom.value.plate, //catering
+      services: this.busniessFrom.value.services,
+
+      photoexperience: this.busniessFrom.value.photoexperience,   //photographer
+      delivery: this.busniessFrom.value.delivery,
+
+      type: this.busniessFrom.value.type, //enterainment
+      experience: this.busniessFrom.value.experience,
+
+      artist: this.busniessFrom.value.artist, //other vendors
+      artexperience: this.busniessFrom.value.artexperience,
     };
 
     this.wedt.update(dta)
@@ -82,9 +118,9 @@ export class DashboardComponent {
 
   Bustype: string = 'Vendors'
 
-  
-  
-  busniessFrom= new FormGroup({
+
+  //FORMS
+  busniessFrom = new FormGroup({
 
     busName: new FormControl(''),
     description: new FormControl(''),
@@ -134,12 +170,12 @@ export class DashboardComponent {
     experience: new FormControl(''),
 
     artist: new FormControl(''),    //other vendors
-    artexperience: new FormControl(''), 
-    
+    artexperience: new FormControl(''),
+
   })
 
 
-  
+
   get FirstName(): FormControl {
     return this.busniessFrom.get('firstname') as FormControl;
   }
@@ -228,26 +264,123 @@ export class DashboardComponent {
   get Delivery(): FormControl {
     return this.busniessFrom.get('delivery') as FormControl;
   }
-  
+
   get Type(): FormControl {
     return this.busniessFrom.get('type') as FormControl;
   }
-  
+
   get Experience(): FormControl {
     return this.busniessFrom.get('experience') as FormControl;
   }
-  
+
   get Artist(): FormControl {
     return this.busniessFrom.get('artist') as FormControl;
   }
-  
+
   get Artexperience(): FormControl {
     return this.busniessFrom.get('artexperience') as FormControl;
   }
-  
-  
+
+
 
 
 
 }
 
+
+
+// firstname
+// :
+// "Jay"
+// lastname
+// :
+// "Dubbewar"
+
+// bname
+// :
+// "Indian catering"
+
+// price
+// :
+// "500"
+
+// city
+// :
+// "mulawa"
+
+// mobile
+// :
+// "1234567890"
+// about
+// :
+// "great"
+
+// uid
+// :
+// "iWMVkSV2iTdK80N0igJOT4jRraY2"
+// policy
+// :
+// "60"
+
+
+// btype
+// :
+// "Catering"
+
+// area
+// :
+// ""
+
+
+// location
+// :
+// ""
+// rooms
+// :
+// ""
+// parking
+// :
+// ""
+// cater
+// :
+// ""
+// decor
+// :
+// ""
+// capacity
+// :
+// ""
+// tambuexperience
+// :
+// ""
+// music
+// :
+// ""
+// stage
+// :
+// ""
+// plate
+// :
+// "500"
+// services
+// :
+// "all"
+// photoexperience
+// :
+// ""
+// delivery
+// :
+// ""
+// type
+// :
+// ""
+// experience
+// :
+// ""
+// artist
+// :
+// ""
+// artexperience
+// :
+// ""
+///////////////////
