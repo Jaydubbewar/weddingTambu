@@ -127,9 +127,17 @@ export class VendorSignupComponent {
 
     artist: new FormControl(''),    //other vendors
     artexperience: new FormControl(''), 
-    
+    package: new FormControl([]), 
+    images: new FormControl([]), 
   });
 
+  get Images(): FormControl {
+    return this.registerForm.get('images') as FormControl;
+  }
+  
+  get Package(): FormControl {
+    return this.registerForm.get('package') as FormControl;
+  }
   get FirstName(): FormControl {
     return this.registerForm.get('firstname') as FormControl;
   }

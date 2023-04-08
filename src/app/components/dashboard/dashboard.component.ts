@@ -20,6 +20,13 @@ export class DashboardComponent {
   ur: any = ''
   VendorData: any
 
+  Dimages: string[] = [];
+  Dpackage: any[] = [];
+  pname: string = ""
+  pval: string = ""
+  path: string = ""
+
+
   ngOnInit(): void {
     this.ur = this.auth.getCurrentUser();
     if (this.ur != '') {
@@ -28,7 +35,9 @@ export class DashboardComponent {
         console.log('User data:', data[0]);
         console.log('User data:', this.VendorData.btype);
 
-        this.Bustype = this.VendorData.btype
+        this.Bustype = this.VendorData.btype,
+        this.Dpackage = this.VendorData.package,
+        this.Dimages = this.VendorData.images,
         this.busniessFrom.setValue({
           busName: this.VendorData.bname,
           description: this.VendorData.about,
@@ -66,16 +75,66 @@ export class DashboardComponent {
 
           artist: this.VendorData.artist, //other vendors
           artexperience: this.VendorData.artexperience,
+         
         });
       });
     }
 
   }
+
+  package() {                                                     //Package upload
+    this.Dpackage.push({ Pname: this.pname, Pvalue: this.pval })
+    this.pname = ''
+    this.pval = ''
+  }
+
+  DelPackage(Pname:any,Pvalue:any){ 
+    const indexToRemove = this.Dpackage.findIndex(item => item.Pname === Pname && item.Pvalue === Pvalue);
+    if (indexToRemove !== -1) {
+      this.Dpackage.splice(indexToRemove, 1); // Remove 1 item at the found index
+    }
+  }
+
+  
+  async upload($event: any) {           // FOR IMAGE UPLOAD
+
+    this.path = $event.target.files[0]
+
+    let aa = "/files" + Math.random() + this.path
+    await this.af.upload(aa, this.path)
+    console.log(aa)
+    await this.af.ref(aa).getDownloadURL().subscribe((url) => {
+      this.Dimages.push(url)
+    })
+    alert("Image uploaded successfully")
+  }
+
+  deleteImage(downloadUrl: string) {
+    // Use the storage.refFromURL() method to get a reference to the image file from the download URL
+    const imageRef = this.af.refFromURL(downloadUrl);
+  
+    // Call the delete() method on the image reference to delete the image from Firebase Storage
+    imageRef.delete()
+      .subscribe(() => {
+       
+        const indexToRemove = this.Dimages.findIndex(item => item === downloadUrl);
+        console.log('in Dimage pooppaaaaaaaaaaaaa',indexToRemove,downloadUrl)
+        if (indexToRemove !== -1) {
+          console.log('in Dimage poopp')
+          this.Dimages.splice(indexToRemove, 1); // Remove 1 item at the found index
+        }
+        console.log('Image deleted successfully');
+      }, (error) => {
+        console.error('Error deleting image:', error);
+      });
+  }
+  
+  
+
+
   submit() {
     console.log('In submit')
     const dta = {
-      // area: this.busniessFrom.value.busName,
-      // about: this.busniessFrom.value.description,
 
       firstname: this.busniessFrom.value.firstname,
       lastname: this.busniessFrom.value.lastname,
@@ -111,6 +170,9 @@ export class DashboardComponent {
 
       artist: this.busniessFrom.value.artist, //other vendors
       artexperience: this.busniessFrom.value.artexperience,
+
+      package : this.Dpackage,    //for all 
+      images : this.Dimages,
     };
 
     this.wedt.update(dta)

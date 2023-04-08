@@ -280,6 +280,61 @@
 
 
     </div>
+
+    <p>click to add packages</p>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add package</button>
+        
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Package name:</label>
+                <input [(ngModel)]="pname" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">price:</label>
+                <input [(ngModel)]="pval" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="message-text">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button (click)="package()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add package</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li *ngFor="let item of Dpackage">
+        {{ item.Pname }} : {{item.Pvalue}}   <button (click)="DelPackage(item.Pname, item.Pvalue)">Delete</button>
+
+      </li>
+    </ul>
+    <div class="form-group mb-3">
+      <label for="Image">Upload Images></label>
+      <input type="file"  (change)="upload($event)" accept="*.png.jpg">
+    </div>
+    <div *ngIf="Dimages.length==0; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>No images uploaded</ng-template>
+
+    <ng-template #elseBlock>
+      <div class="card-group">            
+        <tr *ngFor="let img of Dimages">  
+          <div class="card ">
+            <img src={{img}} class="card-img-top" alt="..." width="200" height="200">                
+          </div>  
+          <p>{{img}}</p>
+          <button (click)="deleteImage(img)">Delete</button>            
+        </tr>
+      </div>       
+    </ng-template>   
+
+
     <div class="mt-5 text-center"><button class="form-button btn btn-primary">Update Busniess Details</button></div>
 
 
