@@ -118,10 +118,11 @@ export class DashboardComponent {
       .subscribe(() => {
        
         const indexToRemove = this.Dimages.findIndex(item => item === downloadUrl);
-        console.log('in Dimage pooppaaaaaaaaaaaaa',indexToRemove,downloadUrl)
+        // console.log('in Dimage pooppaaaaaaaaaaaaa',indexToRemove,downloadUrl)
         if (indexToRemove !== -1) {
-          console.log('in Dimage poopp')
+          // console.log('in Dimage poopp',this.Dimages)
           this.Dimages.splice(indexToRemove, 1); // Remove 1 item at the found index
+          // console.log(this.Dimages)
         }
         console.log('Image deleted successfully');
       }, (error) => {
